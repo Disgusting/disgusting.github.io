@@ -1,0 +1,152 @@
+a,p,h1,h2,h3,h4,li{
+    color:#222222;
+}
+a {
+    font-weight: 800;
+    color: black;
+}
+h1 {
+    font-weight: 800;
+    color: black;
+    text-decoration: underline;
+}
+h2 {
+    font-weight: 700;
+    font-size: 190%;
+}
+td{
+    font-size: 90%;
+}
+.hidden-on-mobile {
+    visibility: inherit;
+    clear: inherit;
+}
+
+:root {
+    --pico-typography-spacing-vertical: 1.5rem;
+    --pico-font-family: JetBrains Mono, monospace;
+    --pico-font-weight: 500;
+}
+
+@media (max-width: 575px) {
+
+    .hidden-on-mobile {
+        visibility: hidden;
+        clear: both;
+        display: none;
+    }
+}
+
+@media (min-width: 576px) {
+    :root {
+        --pico-font-size: 87.5%;
+        /* Original: 106.25% */
+    }
+}
+
+@media (min-width: 768px) {
+    :root {
+        --pico-font-size: 87.5%;
+        /* Original: 112.5% */
+
+    }
+}
+
+@media (min-width: 1024px) {
+    :root {
+        --pico-font-size: 87.5%;
+        /* Original: 118.75% */
+    }
+}
+
+@media (min-width: 1280px) {
+    :root {
+        --pico-font-size: 87.5%;
+        /* Original: 125% */
+    }
+}
+
+@media (min-width: 1536px) {
+    :root {
+        --pico-font-size: 87.5%;
+        /* Original: 131.25% */
+    }
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* Tooltip content */
+.tooltip .tooltip-image{
+    visibility: hidden;
+    width: 300px;
+    background-color: var(--primary);
+    color: var(--contrast);
+    text-align: center;
+    border-radius: 5px;
+    padding: 10px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* Position above the element */
+    left: 50%;
+    margin-left: -100px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none; /* Disable interaction with the tooltip content */
+}
+
+/* Tooltip arrow */
+.tooltip .tooltip-image::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent transparent transparent;
+}
+
+/* Show the tooltip content on hover */
+.tooltip:hover .tooltip-image {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Style for the image inside the tooltip */
+.tooltip img {
+    width: 1500px;
+    height: auto;
+    margin-bottom: 10px;
+}
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.flex-item-left {
+    padding-right: 8px;
+    padding-bottom: 14px;
+    flex: 50%;
+}
+
+.flex-item-right {
+    padding-left: 8px;
+    padding-bottom: 8px;
+    flex: 50%;
+}
+
+/* Responsive layout - makes a one column layout instead of a two-column layout */
+@media (max-width: 800px) {
+    .flex-item-right, .flex-item-left {
+        flex: 100%;
+    }
+}
+
+.bordered {
+    border: 1px solid #000000;
+}
+

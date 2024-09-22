@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en" data-theme="light" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.sand.min.css">
+        <link rel="stylesheet" href="style.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="color-scheme" content="light dark">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+        <title>Damn Standard</title>
+    </head>   
+    <body>
+        <main class="container">
+            <h1 id="stylizedrockprocessdishonored2">Stylized Rock Process (Dishonored 2)</h1>
+            <p>Disclaimer&nbsp;</p>
+            <p>Allow me to clarify, this brief guide is by no means the optimal way to sculpt a stylized rock, it is merely the process that I’ve taken to model my rock. I’ve written this to ensure stylistic consistency among team members and to assist them, should they find themselves stuck or facing issues. It's also a message to my future self, a reminder, a confrontation with the absurd possibility that I might find myself becoming, of all things, a rock modelling specialist.</p>
+            <h2 id="primaryform">Primary Form</h2>
+            <ol>
+                <li><p>Create the primary form by duplicating and stacking simple low-poly meshes. Ensure that the shapes are slightly larger than the reference, as the sculpting brushes we will be using can be rather destructive.</p></li>
+                <li><p>Use the Trim-smooth-border, Planar-cut-shallow, and smooth brushes to refine the primary shapes based on your reference. Keep the DynaMesh resolution low throughout the process (100). Try to straighten or avoid curves as much as possible, and use DynaMesh often. Repeat this step with a reduced brush size until the form matches the reference.<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXd-XPdk33hYmGWdLncbR0YYQH4CGJZ4uumLvWbx1nsXtoSkYSWballYO4nOmx3buSZlZLuokUIb7YZFyTG7sErZ-S3-nUbmT7kXDrTqu5mdPiTLh1fTm3d4hlONe1I-68AvviqR7m0ARxXg99ZAXN4c9Zgi?key=Q7Mqq1pBEiX3VHr4Wt89WQ" alt="" /></p></li>
+                <li><p>Paint an area with the Mask brush and invert the mask by ctrl-clicking outside of the mesh. Use Trim-smooth-border to create chips/cracks on the perimeter of the rock. You can also use this technique with the Move Tool to extrude surfaces, make sure to dynamesh afterwards.<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXd-hSo_ZHDI7w1i_bhYpF9u29aFjek4okr7c31RZStOlXjwtI24IDUjw2LfwsI8gblJ01KOXOv3umePlbzQlvETm8_ALfJ93Y2kL07ApbAwG69-Z88jCR-lVXx0byqW6gXkuQ182l6dp9W0t5q_PVuFHefO?key=Q7Mqq1pBEiX3VHr4Wt89WQ" alt="" /></p></li>
+            </ol>
+            <h2 id="secondarydetails">Secondary Details</h2>
+            <ol>
+                <li>Once you’re satisfied with the primary form, double the dynamesh value with Polish turned on. Run Deformation [Smooth] with negative value or Deformation [Contrast] with positive value to sharpen the mesh if required. use masks to isolate areas if needed.</li>
+            </ol>
+            <p><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXepuCAIYPK921q2PVoIaLaq-5OPwVPPEZ8Gl8xeYUtCMLy-Gcs_rphdOssX4Dhi3zRKLtosiJW8LBRraPaSTTr_bQa-iUte1CFJsWGabwmQt6F1SHQQDlqF_DG8ubBaAObBdpsf0c-cJ-Fx7GHtjVSUwIU?key=Q7Mqq1pBEiX3VHr4Wt89WQ" alt="" /></p>
+            <ol start="2">
+                <li><p>Add cracks and defined edges using the Dam-standard brush.</p></li>
+                <li><p>Continue to refine the form. Use Smooth-peak to simplify larger planes, maintain the detailed crack and crevasses. Repeat Step 1-3 until you’re happy.</p></li>
+
+
+                <li><p>Once you’re satisfied, Store Morph-Target then apply rock alphas using DragRect. Try to apply alphas with stripe patterns on the rock strata and normal rock alpha on larger surfaces. Make sure the Backface mask is enabled.</p></li>
+                <li><p>Use the Morph brush with low intensity to remove any unwanted alphas. Clean up any dirty geometry with Planar-cut, Trim-smooth-border, and Flatten brush. <img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXch8F0R88swp4PtWBIddZt5PYXvjfOTV6EoclQeHabtYzH_b3aFX_CAoodTIHuEJRgV27IcEVx8PsEfMHz19qjt24Z3e3VicQmyvA_bVhD2cKPcRCTPkoOuGkNv-_JCmrEi7OhAK3bnwkFQW4WxSVXWnT3z?key=Q7Mqq1pBEiX3VHr4Wt89WQ" alt="" /></p></li>
+            </ol>
+            <h2 id="retopology">Retopology</h2>
+            <ol>
+                <li><p>Use Decimation Master targeting 1.1k tris. pre-process before decimate. Export .FBX.</p></li>
+                <li><p>Open the FBX with your favourite 3D-modelling software, Soften-Edge or Shade-smooth the mesh then view the mesh with MATCAP, to ensure that it is shaded correctly. Fix any bad topology.</p></li>
+                <li><p>Create seams along flat surfaces, visualise the rock as a low-poly mesh, this will aid the LOD process.<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXd1p7UIDzJzJWpLga-fcz8AZr0HCXRnOLsA-KCs9NtcvnSXwwqO82uabpaFh9GMmy-FU1vqpkOog_nOylU64NBwxn1KZAzgndT2ybW5reIJVueHFRMSM3QsWUVIUDQiEad1rUWJ3CeAAKqSObHfAVM9nNxK?key=Q7Mqq1pBEiX3VHr4Wt89WQ" alt="" /></p></li>
+            </ol>
+            <p><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXfX33b1pU2wvXvNBHzT926bSU5jKgCfYhDBpOMGZLdKfTuGIIpQ_lXXVj_cG3ActCEGCy2QGPr7vQV5BhxANwTfx-KLhFtIUgp6onEoSPq94NVXwe_OeblIIs7UnFlD1atD-FQk-x6gQHD8b7OW8E_ymu6g?key=Q7Mqq1pBEiX3VHr4Wt89WQ" alt="" /></p>
+            <ol start="4">
+                <li>Unwrap and pack the UV, make sure the texel-density is consistent across islands and that there is no UV stretching.<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXd22zULleefD4vtYHmtSZNL4IepbMi6zL5JpQR2E5nqwc0gHwZfpG-x4EYfw7nzGx8z6RY-TdogBbUHnSo1kw4rrTP7oGjH5D30RYhXp1Tzuk4ZdLgpgvbS4r_hwKBQ7Pngk4rqvMdaNPlkiI8Nhm7WRoY9?key=Q7Mqq1pBEiX3VHr4Wt89WQ" alt="" /></li>
+            </ol>
+            <h2 id="surfacingpart1">Surfacing (Part 1)</h2>
+            <ol>
+                <li><p>Load your low-poly mesh into Substance Painter. Make sure Environment Map and Exposure value in the settings is set to the following, for consistency:<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXceAJV2IBK-ZHT02pXFUWeaMiNheIXENoc9KVfLWPLIDRH3sFPVCKw6prRI4AlDfshdOjpjvDkUumjVRn54wA2OwjB1aNl6opAJ3dkOTSIwAekwsnb1Zw4OMtx3WqzjcuKk0yvDRGpevwb9lwYDcPLIRmhi?key=Q7Mqq1pBEiX3VHr4Wt89WQ" alt="" /></p></li>
+
+
+                <li><p>Add a fill layer with the following values. Tip: You can use the Substance Painter’s colour picker on other applications / windows.</p></li>
+            </ol>
+            <p><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXdtxCuWyv_rX1WgFf1ElHs8gye-J-IMgeM0BMVpPx1XzVe-wTXZogtX3i79xBXvLeBOyTPmF9UNHBNHNXk5phDOEn2pgOgQlwwsooQG4KAAPLPGn41ol0JrvVYXyWvko6ibEQvZjZGtBpr_D54ITNKdW9r2?key=Q7Mqq1pBEiX3VHr4Wt89WQ" alt="" /></p>
+            <p>This will be our Base Layer. Note: for the rest of the textures, turn off everything but [color].</p>
+            <ol start="3">
+                <li><p>Bake the High-poly as you would normally (ctrl+shift+b), make sure the AO map has enough contrast, here are my settings for the Ambient Occlusion:<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXe1--7OMURYdmAAkceAAhGxWnei8XPyjzCsULsyO8UGAVPfdNR0eGc0LadNL4iBWjNyJciIgV38xCu8x_xmkLdWUcRHb9F-P-Ln9Fwzr4htqIDFMq2t-HJ-27ttnmf7EaMSAT4Mo17wf8h3SgdjM1YajnDb?key=Q7Mqq1pBEiX3VHr4Wt89WQ" alt="" /></p></li>
+                <li><p>Organise the rock material layers into groups, such as: Edge-wear, Cavities, Lichen, All-surfaces, and Spots.<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXe_Xhiaq9MJ-tFOS-bhvDlqNnIaXSJX9dh1n1IHoyPyreRnbU5n_uLLVDthNmsSWKY3IgeE1NTlTPQXhYow4FK-TEDmVvtygok45E1BlZFyx1wRVA56cslcO9yOACGQUKsBCc6ChPQtIX0Yp1Rx6elikbnM?key=Q7Mqq1pBEiX3VHr4Wt89WQ" alt="" /></p></li>
+
+
+                <li><p>Start populating each layer group with Fill Layer + Black mask + Drag_Drop smart masks from the Asset Library.</p></li>
+            </ol>
+            <p><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXfp57Iobxatiaactf-hrV_7SV917tLjlQ3ZjyougSKuX0uya2CBRN6maUyzgfCAdVbLcALQ4HHjKipFfOzHzatav3rNJscHAB26-gFAzjA4YQrJbdGlWUgwpWqNYl2o74W2aPwgDGdSIpHvGzo_LN0wv7A?key=Q7Mqq1pBEiX3VHr4Wt89WQ" alt="" /></p>
+            <p><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXdLbOryHhRI76tL8WErEs7m72W7SZn6TiFs-xrTqkakSsD8FaZfSP-2XiYnjd0zTrnzMqYXXD7sFyCLUD2CFFuVp1jdzVsYVgR-t3E5dymAV7T1LjD-0Yy5huesK2fhLe15q8LWOJiOmxArxYVnKz3sRR9r?key=Q7Mqq1pBEiX3VHr4Wt89WQ" alt="" /></p>
+            <p><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXcdk2t4liGz8kmz_HgISzXdvYiIqD0xslR95JZK1-JGUHFByaOKajL1l6x7UBDmf3f06aW2kx4gf3WYFLYze6vhigk7OOHWyLrFrZi5Of0yGszHm-mYltHTyANht49bf9rPODKizMRdUh46UyAf3oRVN90?key=Q7Mqq1pBEiX3VHr4Wt89WQ" alt="" /><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXewi7RSXHVcahW-T2RBoOCDfs35aLpnqozXvA7KwbBQWGOI8aI9086PH5_BmsU9-YTma1svi-qThIiOWIJdB8_XpNBPZNf1_B9vKjzCgwj_OfEHiarXQ2w80ho6hrQ9Nm2mS_uIfnYWNOu9ZPVB2OUla_M?key=Q7Mqq1pBEiX3VHr4Wt89WQ" alt="" /></p>
+            <p>Use bright colours so it is easier to see the mask.<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXdRbNNa8MmmEj_uVqBxQ6Xqdb9cJFDwbWm69eRnBoJC0j2Ir7GjCWCrX-b7kQZugFeiZ2zGJW5cE-Lj8B_6ZkWY87sZi3wamp7qbc8hd7QPbN3GV36w6KBxC_t9Hhl90tJPmAFyXQvPELTz9wsdFC0C9t05?key=Q7Mqq1pBEiX3VHr4Wt89WQ" alt="" /></p>
+            <p>Adjust each mask’s parameter until we get the desired coverage, then change the fill layer’s colour to match our reference (use colour picker but also adjust the HSV value), always shift the hue. <img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXftrjN-unUHxZRqNimYhs08etdzqvgvfODj1EX9lRW6oC_fKRVA0d_hvlxzVrCxLG70l7Oxd8pHuHG-trLnhqw8PoBhONjNzPD69BBpRUmyEaJfv_o2f93FrNATImycPfZKfFk7p0GKLuoMLDhG-tgNz58?key=Q7Mqq1pBEiX3VHr4Wt89WQ" alt="" /></p>
+            <p>Some Smart-Mask will contain Seed parameters, you can duplicate these layers and randomise the seed to quickly create colour variations.<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXeJQUi2PWIl8OsEaNA5za7paMd2gC9Sm7KYx3QEXj6T_cUC8lViFWMPRs1pTI4P7jbW6UaQlW6f8kE6nCdGmTCelctca80i_pEw1cTwbM0FVAy40t--cMCuoT-39zACESRPQY__UO2DtQRX8WUBdlq99XrT?key=Q7Mqq1pBEiX3VHr4Wt89WQ" alt="" /></p>
+            <p>I usually create a bunch of masks early on then adjust and organise / colour them later.<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXf3V2qC5FYjv-QvfN_q__pHPHDsYaYPK3-OJ3958cVsf3FVNYEvnQnxMGMRlTv9HWKbzH67sJV0v-ueXuNG2hwGsY9qoCXzzBqf1yX8Dvua1DfU_j121YYgpXrDxw7LsDM7anozvxsm_94QHBkEuQslf0Pv?key=Q7Mqq1pBEiX3VHr4Wt89WQ" alt="" /></p>
+            <p>You should also play around with the layer blending modes, e.g. the subtract mode can be used to adjust masks intensity.<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXdBZi5NWcIEdm5bpgaQjsMTmbLe-URXrkG0C_8jwFLqGiA6oU2cjWJuwdzwPRFWSezfrH7DStFC_Bf4WF-6IICuUT4ZHLP3Ek1WeCYJKEzUIgRSfuJlBiOn23OtleLc464eKL3d1whh1QPNYyl40-lxoAE5?key=Q7Mqq1pBEiX3VHr4Wt89WQ" alt="" /></p>
+            <p>Avoid Smart masks that create ugly seams.<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXcuwvQ0CunVkGl75Z5Ux8fyysc-d324z1MuyLVtzO06EBYYYdvVDYZV_RxhC6TsXO_l-DpROB1Q6zpr9TGHDdALPhTi40ibsXUNigOI7jjUxlE_CDLHcUDSerKAjgnGP0qgdmg3WSnnKV1ysquDQ_cs9Vow?key=Q7Mqq1pBEiX3VHr4Wt89WQ" alt="" /></p>
+            <p>You can also turn on “Height” material in the fill layer to generate more normal map details, I’ve only used this only “Lichen” layer, and very lightly.<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXcWkF_hDevqeBQLtLkByLE7vAjeBwhlyksQMjRoCaa7qfRxu10tJxUcC6bPOgVCafUJbKjrQjC5dBwjVWXmwiOLgsuAPzQwUzCLZWnYhY0aypDKYqYRqLYO7iyzPZgtRhS21U0ev16gsPcCoqtyxRfrfaY8?key=Q7Mqq1pBEiX3VHr4Wt89WQ" alt="" /></p>
+            <p>Sharpen filter can be useful when working on the Edge-wear layers<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXeWMcnG04cMfEj5wpExBfifvKuviHDPynMZNE0gpwjruVdqzP7_nc6QFbYPBvmUlfC47TP-WK45ItUQPlYMSoFCvGEMggckNn7HbvbDv779zoO86-CUCPNROXhB1UNgk2DUFAyaC5Bd0DC2EEW0WQAqUK1p?key=Q7Mqq1pBEiX3VHr4Wt89WQ" alt="" /></p>
+            <p>Invert mask button can be used to quickly create a mask that fulfil our requirements. E.g. changing cavity mask to all-surfaces.<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXeDqPriQpgzeDBUBxBuexzJf3jE3R2hSZf6iTv3KN20lhcxMnAshkKC4cfq5l8wo0gk_scvusCt7nikvbJ3b9wSApeCw2SRdgqsmlgx9CXOvSitlLyebSSgOO4Sdib7TvmhCq9oo-Ej2dckGxtdNT1yo2o?key=Q7Mqq1pBEiX3VHr4Wt89WQ" alt="" /></p>
+            <p>Filter [Blur Slope] can be used to create the Lichen layer mask<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXfOqthpB6MHgDmX90lA4qlheJWSsu_c1f5Bp3btfTs1n5sG5yaSOFjKgPInwgtjhm2XEQDucF_GVY8NA4h9-DI-aPZch88_lq6FhZ3VsD4FickZk86Rs1nEf_ypYPPnjSq9c4Chk20tBLOLRi8kcYnn3bIw?key=Q7Mqq1pBEiX3VHr4Wt89WQ" alt="" /></p>
+            <ol start="6">
+                <li>Keep adding fill layers and masks until your textures match the reference. There should be at least 15 layers.</li>
+            </ol>
+            <p><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXclMqw0tsvcj9wmN4Jwo548SWAGAb4zvt0zuLO1AaLdbCW76QUFqSdJ3fTSCO_eO22zDmRVtNPQsP6xOcSVmlu-SLuqhvUaswZNEpFu2h_g6MHa__Gm-pEU2w9AGp3_1q2hSd3ts5X-fmk4fruTgrRCDaU?key=Q7Mqq1pBEiX3VHr4Wt89WQ" alt="" /><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXf5cZEHUSWz8Nw_FloY6VU3oQvwgt-zDvBv6pGXIumvkbd-Bs92r4gtQbKPX5wli8pNZo8qaU0PknzPl2RhC_ePbt9VSg1-3LOTbrQNvvi3LXWOYtUkuRZCL5_Hy0iw3bUutpIpz7GoCeQsKu-tBCyszPXO?key=Q7Mqq1pBEiX3VHr4Wt89WQ" alt="" /><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXcRx6IJLSVoNpklW2IjZV5ogwajFJEn-YIInVgwT-yBrK9gH0f8F1srMTbsWwwKwelKCemTEf_s30GuH_v9iwSHDu_TWkoWu8aR3gh-RNyFHt84tJQSmWShtyXDgbrogvHyde-z6LYF32YNRNyK792LRK5i?key=Q7Mqq1pBEiX3VHr4Wt89WQ" alt="" /></p>
+            <p>The colour variation and contrast is still lacking on my textures, I will finish it when I have time.</p>
+            <h2 id="surfacingpart2">Surfacing (Part 2)</h2>
+            <ol>
+                <li><p>Create a Paint Layer at the top of the layer stack.<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXf5gKc7y17KzZv_DOScJn3wMNfqohDSxUasbJtbbsfd-GFVAa26iL0X56yS2OwlzP7WQugzZcbWC27ntHDk-jPfN5ngm9coIB4b2fIGKjc8zQVkGoA2Iiz6n1_dzTehrN3MNNQ1_NHzj0KbqqNmHOkQsmTD?key=Q7Mqq1pBEiX3VHr4Wt89WQ" alt="" /></p></li>
+                <li><p>Paint with various brushes, to further improve the textures. Add more colour variations and fix any texture seams and issues created by the mask generators. Make use of layer blending mode and opacity. Repeat until the texture is complete.</p></li>
+            </ol>
+            <p>You’ve reached the end. If this guide was useful, consider buying me a cup of coffee and follow my art socials:</p>
+            <p><a href="https://www.artstation.com/disgusting">https://www.artstation.com/disgusting</a></p>
+            <p><a href="https://sketchfab.com/disgustings">https://sketchfab.com/disgustings</a></p>
+        </main>
+    </body>
+</html>
+
