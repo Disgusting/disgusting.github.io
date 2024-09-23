@@ -9,19 +9,45 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+        <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script> 
+        <script>
+            const lenis = new Lenis()
+
+            lenis.on('scroll', (e) => {
+              console.log(e)
+            })
+
+            function raf(time) {
+              lenis.raf(time)
+              requestAnimationFrame(raf)
+            }
+
+            requestAnimationFrame(raf)
+        </script>
         <title>Damn Standard</title>
     </head>   
     <body>
         <main class="container">
+         
+            
+            <h4><a href="./index.html">Back</a></h4>
             <h1 id="stylizedrockprocessdishonored2">Stylized Rock Process (Dishonored 2)</h1>
-            <p>Disclaimer&nbsp;</p>
-            <p>Allow me to clarify, this brief guide is by no means the optimal way to sculpt a stylized rock, it is merely the process that I’ve taken to model my rock. I’ve written this to ensure stylistic consistency among team members and to assist them, should they find themselves stuck or facing issues. It's also a message to my future self, a reminder, a confrontation with the absurd possibility that I might find myself becoming, of all things, a rock modelling specialist.</p>
-            <h2 id="primaryform">Primary Form</h2>
+              <div class="flex-container">
+               <div class="flex-item-left">
+                   <p>Disclaimer</p>
+                   <p>Allow me to clarify, this brief guide is by no means the optimal way to sculpt a stylized rock, it is merely the process that I’ve taken to model my rock. I’ve written this to ensure stylistic consistency among team members and to assist them, should they find themselves stuck or facing issues. It's also a message to my future self, a reminder, a confrontation with the absurd possibility that I might find myself becoming, of all things, a rock modelling specialist.</p>
+               </div>
+               <div class="flex-item-right">
+                   <h2 id="primaryform">Primary Form</h2>
             <ol>
                 <li><p>Create the primary form by duplicating and stacking simple low-poly meshes. Ensure that the shapes are slightly larger than the reference, as the sculpting brushes we will be using can be rather destructive.</p></li>
                 <li><p>Use the Trim-smooth-border, Planar-cut-shallow, and smooth brushes to refine the primary shapes based on your reference. Keep the DynaMesh resolution low throughout the process (100). Try to straighten or avoid curves as much as possible, and use DynaMesh often. Repeat this step with a reduced brush size until the form matches the reference.<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXd-XPdk33hYmGWdLncbR0YYQH4CGJZ4uumLvWbx1nsXtoSkYSWballYO4nOmx3buSZlZLuokUIb7YZFyTG7sErZ-S3-nUbmT7kXDrTqu5mdPiTLh1fTm3d4hlONe1I-68AvviqR7m0ARxXg99ZAXN4c9Zgi?key=Q7Mqq1pBEiX3VHr4Wt89WQ" alt="" /></p></li>
                 <li><p>Paint an area with the Mask brush and invert the mask by ctrl-clicking outside of the mesh. Use Trim-smooth-border to create chips/cracks on the perimeter of the rock. You can also use this technique with the Move Tool to extrude surfaces, make sure to dynamesh afterwards.<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXd-hSo_ZHDI7w1i_bhYpF9u29aFjek4okr7c31RZStOlXjwtI24IDUjw2LfwsI8gblJ01KOXOv3umePlbzQlvETm8_ALfJ93Y2kL07ApbAwG69-Z88jCR-lVXx0byqW6gXkuQ182l6dp9W0t5q_PVuFHefO?key=Q7Mqq1pBEiX3VHr4Wt89WQ" alt="" /></p></li>
             </ol>
+               </div>
+            </div>
+                   
+                    
             <h2 id="secondarydetails">Secondary Details</h2>
             <ol>
                 <li>Once you’re satisfied with the primary form, double the dynamesh value with Polish turned on. Run Deformation [Smooth] with negative value or Deformation [Contrast] with positive value to sharpen the mesh if required. use masks to isolate areas if needed.</li>
