@@ -1,14 +1,18 @@
 body {
-    color:#222222;
+    
+    color: rgb(2, 11, 54);
+   
 }
 a {
     font-weight: 800;
-    color: black;
+    color: rgb(1, 7, 29);
 }
 h1 {
     font-weight: 800;
     text-decoration: underline;
-    font-size: 8em;
+    /*font-size: 1em;*/
+    /*color: rgb(16, 53, 206)*/
+        
 }
 h2 {
     font-weight: 700;
@@ -27,6 +31,7 @@ td{
     --pico-typography-spacing-vertical: 1.5rem;
     --pico-font-family: JetBrains Mono, monospace;
     --pico-font-weight: 500;
+     /*background-color: rgb(255, 243, 227)*/
 }
 
 @media (max-width: 575px) {
@@ -58,7 +63,7 @@ td{
         /* Original: 112.5% */
 
     }  h1 {
-        font-size: 5rem;
+        font-size: 4rem;
     }
 }
 
