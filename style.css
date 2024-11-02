@@ -25,68 +25,16 @@ td{
     visibility: inherit;
     clear: inherit;
 }
-
-
-:root {
-    --pico-typography-spacing-vertical: 1.5rem;
-    --pico-font-family: JetBrains Mono, monospace;
-    --pico-font-weight: 500;
-     /*background-color: rgb(255, 243, 227)*/
+.hidden-on-pc {
+    visibility: hidden;
+    clear: both;
+    display: none;
 }
 
-@media (max-width: 575px) {
-
-    .hidden-on-mobile {
-        visibility: hidden;
-        clear: both;
-        display: none;
-    } 
-    h1 {
-        font-size: 2rem;
-    }
+.video {
+    object-fit:scale-down;
 }
 
-@media (min-width: 576px) {
-    :root {
-        --pico-font-size: 87.5%;
-        /* Original: 106.25% */
-    }
-    
-    h1 {
-        font-size: 3rem;
-    }
-}
-
-@media (min-width: 768px) {
-    :root {
-        --pico-font-size: 87.5%;
-        /* Original: 112.5% */
-
-    }  h1 {
-        font-size: 4rem;
-    }
-}
-
-@media (min-width: 1024px) {
-    :root {
-        --pico-font-size: 87.5%;
-        /* Original: 118.75% */
-    }
-}
-
-@media (min-width: 1280px) {
-    :root {
-        --pico-font-size: 87.5%;
-        /* Original: 125% */
-    }
-}
-
-@media (min-width: 1536px) {
-    :root {
-        --pico-font-size: 87.5%;
-        /* Original: 131.25% */
-    }
-}
 
 .tooltip {
     position: relative;
@@ -137,6 +85,78 @@ td{
     height: auto;
     margin-bottom: 10px;
 }
+
+
+:root {
+    --pico-typography-spacing-vertical: 1.5rem;
+    --pico-font-family: JetBrains Mono, monospace;
+    --pico-font-weight: 500;
+     /*background-color: rgb(255, 243, 227)*/
+}
+
+@media (max-width: 575px) {
+
+    .hidden-on-mobile {
+        visibility: hidden;
+        clear: both;
+        display: none;
+    } 
+    h1 {
+        font-size: 2rem;
+    }
+    .hidden-on-pc {
+        visibility: visible;
+        clear: inherit;
+        display: block;
+    }
+    .tooltip:hover .tooltip-image {
+        visibility: hidden;
+
+    }
+}
+
+@media (min-width: 576px) {
+    :root {
+        --pico-font-size: 87.5%;
+        /* Original: 106.25% */
+    }
+    
+    h1 {
+        font-size: 3rem;
+    }
+}
+
+@media (min-width: 768px) {
+    :root {
+        --pico-font-size: 87.5%;
+        /* Original: 112.5% */
+
+    }  h1 {
+        font-size: 4rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    :root {
+        --pico-font-size: 87.5%;
+        /* Original: 118.75% */
+    }
+}
+
+@media (min-width: 1280px) {
+    :root {
+        --pico-font-size: 87.5%;
+        /* Original: 125% */
+    }
+}
+
+@media (min-width: 1536px) {
+    :root {
+        --pico-font-size: 87.5%;
+        /* Original: 131.25% */
+    }
+}
+
 .flex-container {
     display: flex;
     flex-wrap: wrap;
