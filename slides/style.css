@@ -9,3 +9,7 @@ p {
   font-weight: 400;
   font-style: normal;
 }
+code {
+  font-size: large;
+  line-height: normal;
+}

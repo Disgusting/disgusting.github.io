@@ -18,7 +18,10 @@
 		rel="stylesheet">
 
 	<!-- Theme used for syntax highlighted code -->
-	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	<!-- <link rel="stylesheet" href="plugin/highlight/monokai.css"> -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai-sublime.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/csharp.min.js"></script>
+	
 </head>
 
 <body>
@@ -26,13 +29,13 @@
 		<div class="slides">
 			<section>
 				<p class="r-fit-text">
-					Visual Effects Break-down of Infernal Clean-up
+					Visual Effects of 'Infernal Clean-up'
 				</p>
 				<p class="fragment">
-					Tech-Art without being technical.
+					Technical Art, Minus the Technicalities
 				</p>
 				<aside class="notes">
-					Shhh, these are your private notes📝
+					More creative side of tech-art. 📝
 				</aside>
 			</section>
 			<section>
@@ -43,12 +46,58 @@
 			<section>
 				<p>
 				<ul>
-					<li>Vertex-Painting</li>
-					<li>Cleanable Material</li>
+					<li>Runtime Painting</li>
+					<li>Layers of Grimes</li>
 					<li>Blaster VFX</li>
 					<li>Puddle VFX</li>
 				</ul>
 				</p>
+			</section>
+			<section>
+				<p>
+					Render Texture
+				</p>
+				<p>
+					or
+				</p>
+				<p>
+					<span class="fragment highlight-green">Vertex Painting</span>
+				</p>
+			</section>
+			<section>
+				<p>
+					Problems:
+				<ul>
+					<li>No GPU instancing, mesh data different for each asset</li>
+					<li>Introduces additional 3D asset requirements</li>
+					<li>Low FPS issue when vertex painting</li>
+				</ul>
+				</p>
+			</section>
+			<section>
+				<pre><code class="data-trim data-noescape csharp">
+				// Paint-vert: result = Sphere Overlap Check on a raycast. 
+				// This is within a coroutine.
+				foreach (var col in result)
+				{
+					if (!col)
+						continue;
+					col.TryGetComponent(out Cleanable cleanable);
+					if (cleanable)
+					{
+						Vector3 returnColor = Global.I.PaintVert(
+							col.GetComponent&lt;MeshRenderer&gt;(),
+							hit.point,
+							// Paint strength depending on number of objs being painted
+							paintStrengthNormal * result.Length,
+							paintRadius,
+							// 
+							cleanable.KdTree);
+					}
+					// Paint 1 mesh per frame
+					yield return null;
+				}
+			</code></pre>
 			</section>
 			<section>
 				<P>Cleanable Shader-Graph</P>
@@ -69,6 +118,7 @@
 	<script src="plugin/notes/notes.js"></script>
 	<script src="plugin/markdown/markdown.js"></script>
 	<script src="plugin/highlight/highlight.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/csharp.min.js"></script>
 	<script>
 		// More info about initialization & config:
 		// - https://revealjs.com/initialization/
@@ -79,6 +129,9 @@
 			// Learn about plugins: https://revealjs.com/plugins/
 			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
 		});
+		document.addEventListener("DOMContentLoaded", (event) => {
+        hljs.highlightAll();
+   		 });
 	</script>
 </body>
 
