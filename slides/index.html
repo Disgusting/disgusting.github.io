@@ -46,19 +46,21 @@
 				<video class="video" height="600
 				" width="" playsinline="" autoplay="true" loop="" controlslist="nodownload noplaybackrate"
 					disablepictureinpicture="" src="images/Vid_1.mp4"></video>
-
 			</section>
 			<section>
 				<p>
-				<ul>
-					<li>Runtime Painting</li>
-					<li>Layers of Grimes</li>
-					<li>Blaster VFX</li>
-					<li>Puddle VFX</li>
-				</ul>
+				<ol>
+					<li>Runtime vertex painting</li>
+					<li>Layers of blood</li>
+					<li>Visual effects</li>
+				</ol>
 				</p>
 			</section>
 			<section>
+				<p>
+					1. Runtime vertex painting
+				</p>
+				<br>
 				<p>
 					Render Texture
 				</p>
@@ -69,66 +71,73 @@
 					<span class="fragment highlight-green">Vertex Painting</span>
 				</p>
 			</section>
+
+
 			<section>
-				<p>
-					Problems:
-				<ul>
-					<li>No GPU instancing, mesh data different for each asset</li>
-					<li>Introduces additional 3D asset requirements</li>
-					<li>Low FPS issue when vertex painting</li>
-				</ul>
-				</p>
+				<div class="container">
+
+					<div class="col small">
+						<p>
+							Problems with runtime vertex painting:
+						<ul>
+							<li>No GPU instancing, mesh data different for each asset.</li>
+							<li>Introduces additional 3D asset requirements.</li>
+							<li>Low FPS issue when vertex painting.</li>
+						</ul>
+						</p>
+					</div>
+
+					<div class="col">
+						<video class="video" height="600
+				" width="" playsinline="" autoplay="true" loop="" controlslist="nodownload noplaybackrate"
+							disablepictureinpicture="" src="images/Vid_2.mp4"></video>
+					</div>
+
+				</div>
 			</section>
 			<section>
-				<pre><code class="data-trim data-noescape csharp">
-				// Paint-vert: result = Sphere Overlap Check on a raycast. 
-				// This is within a coroutine.
-				foreach (var col in result)
-				{
-					if (!col)
-						continue;
-					col.TryGetComponent(out Cleanable cleanable);
-					if (cleanable)
-					{
-						Vector3 returnColor = Global.I.PaintVert(
-							col.GetComponent&lt;MeshRenderer&gt;(),
-							hit.point,
-							// Paint strength depending on number of objs being painted
-							paintStrengthNormal * result.Length,
-							paintRadius,
-							// 
-							cleanable.KdTree);
-					}
-					// Paint 1 mesh per frame
-					yield return null;
-				}
-			</code></pre>
-			</section>
-			<section>
-				<pre><code class="data-trim data-noescape csharp">
-					//   public Dictionary&lt;string, Queue&lt;GameObject&gt;&gt; poolDictionary;
-						//   ...
-						public GameObject SpawnDecalProjectorFromPool(string tag, Vector3 position, Quaternion rotation)
-						{
-							Queue&lt;GameObject&gt; poolQueue = poolDictionary[tag];
-					
-							// find inactive obj in pool
-							foreach (GameObject pooledObject in poolQueue)
+				<div class="container">
+					<div class="col">
+						<pre><code class="data-trim data-noescape csharp">
+							// Paint-vert: result = Sphere Overlap Check on a raycast. 
+							// This is within a coroutine.
+							foreach (var col in result)
 							{
-								if (!pooledObject.activeInHierarchy)
+								if (!col)
+									continue;
+								col.TryGetComponent(out Cleanable cleanable);
+								if (cleanable)
 								{
-									pooledObject.SetActive(true);
-									pooledObject.transform.position = position;
-									pooledObject.transform.rotation = rotation;
-									return pooledObject;
+									Vector3 returnColor = Global.I.PaintVert(
+										col.GetComponent&lt;MeshRenderer&gt;(),
+										hit.point,
+										// Paint strength depending on number of objs being painted
+										paintStrengthNormal * result.Length,
+										paintRadius,
+										// 
+										cleanable.KdTree);
 								}
+								// Paint 1 mesh per frame
+								yield return null;
 							}
-							return null;
-						}
-			</code></pre>
+						</code></pre>
+					</div>
+
+					<div class="col small">
+						<ul>
+							<li>Splitting tasks over multiple frames with coroutines.</li>
+							<img src="images/kdtree.png">
+
+						</ul>
+					</div>
+				</div>
 			</section>
-			
+
 			<section>
+				<ul class="small">
+					<li>Spatial partitioned the mesh using k-d tree.</li>
+
+				</ul>
 				<pre><code class="data-trim data-noescape csharp">
 					// the KDTree was generated during Init()
 					KDQuery query = new KDQuery();
@@ -171,45 +180,138 @@
 					...
 				</code></pre>
 			</section>
-			<section>
-				<div class="container">
 
-					<div class="col">
-					Column 1 Content
-					</div>
-					
-					<div class="col">
-					Column 2 Content
-					</div>
-					
-					</div>
+			<section>
+
+				<img src="images/occlusion culling.png">
+				<ul class="small">
+					<li>Occlusion culling to control draw-calls.</li>
+				</ul>
 			</section>
 			<section>
-				<P>Cleanable Shader-Graph</P>
-				<img src="images/Material_2.png">
+				<p>2. Layers of blood</p>
+				<img src="images/Mat_1.png">
+
 			</section>
 			<section>
-				<video class="video" height="600
-				" width="" playsinline="" autoplay="true" loop="" controlslist="nodownload noplaybackrate"
-					disablepictureinpicture="" src="images/Vid_2.mp4"></video>
+
+				<div class="container">
+					<div class="col">
+						<img src="images/Mat_2.png">
+					</div>
+
+					<div class="col small">
+
+						<ul>
+							<li>Master Shader: Triplanar sample for blood layers.</li>
+							<li>Problem: 15 texture samples...</li>
+							<li>Problem: lightmap bake will pick up the redness from mesh</li>
+						</ul>
+					</div>
+				</div>
+
+			</section>
+			<section>
 				<p>
-					Materials
+					Master Material
+				</p>
+				<p>
+					<img src="images/Material_1.png">
 				</p>
 			</section>
+			<section>
+
+				<div class="container small">
+					<div class="col">
+						Problem: Lightmap picking up colour information from paintable layer.
+					</div>
+
+					<div class="col fragment">
+						Solution: "Bake-Mode" in shader (static switch on paintable layers)
+						<img src="images/BakeMode.png">
+					</div>
+				</div>
+
+			</section>
+			<section>
+				<p>3. Visual effects</p>
+				<p class="small">
+					This was implemented on master shader's emission output.
+				</p>
+				<video class="video" height="600
+				" width="" playsinline="" autoplay="true" loop="" controlslist="nodownload noplaybackrate"
+					disablepictureinpicture="" src="images/Vid_3.mp4"></video>
+			</section>
+			<section>
+				<div class="container">
+					<div class="col">
+						<video class="video" height="600
+				" width="" playsinline="" autoplay="true" loop="" controlslist="nodownload noplaybackrate"
+							disablepictureinpicture="" src="images/Vid_4_1.mp4"></video>
+					</div>
+
+					<div class="col small">
+						<p>
+							VFX: Puddle
+						</p>
+						<ul>
+							<li>Object-Pooled Decal Projector</li>
+							<li>SetFloat() on raycast to increase puddle size (erosion map lerp)</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<p class="small">
+					Puddle Decal Shader
+					<br>
+					We're modifying only Normal,Metal*,Smoothness.
+					<img src="images/PuddleShader.png">
+				</p>
+				
+			</section>
+
+
+			<section>
+				<div class="container">
+					<div class="col">
+						<video class="video" height="600
+					" width="" playsinline="" autoplay="true" loop="" controlslist="nodownload noplaybackrate"
+							disablepictureinpicture="" src="images/Vid_2.mp4"></video>
+
+					</div>
+
+					<div class="col small">
+						<p>
+							VFX: Droplets
+							<img src="images/Rivulet_1.png">
+						</p>
+						<ul>
+							<li>Spawn on raycast from Object-Pool</li>
+						</ul>
+					</div>
+			</section>		
 			<section>
 				<h1>Thank you!</h1>
 				<video class="video" height="600
 				" width="" playsinline="" autoplay="true" loop="" controlslist="nodownload noplaybackrate"
 					disablepictureinpicture="" src="images/BloodyCube.mp4"></video>
 			</section>
+<!-- 
+			<section>
 
-			<!-- <section>Slide 2
-				<p>"It doesn't need to be good, it just needs to be there". <i>Jet Jones, 2024</i></p>
+				<div class="container">
+					<div class="col">
+						Column 1 Content
+					</div>
+
+					<div class="col">
+						Column 2 Content
+					</div>
+				</div>
+
 			</section> -->
-			<!-- <video autoplay="true" loop="" data-autoplay="true" src="../images/test2.mp4"></video> -->
-			<!--<img src="../../images/FrogSurvivor_Thumbnail.webp">-->
-			<!--<video class="video" height="300" width="" playsinline="" autoplay="true" loop="" controlslist="nodownload noplaybackrate" disablepictureinpicture="" src="../images/test.mp4"></video>-->
-
 		</div>
 	</div>
 
