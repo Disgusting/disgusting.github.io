@@ -13,3 +13,9 @@ code {
   font-size: large;
   line-height: normal;
 }
+.container{
+  display: flex;
+}
+.col{
+  flex: 1;
+}
