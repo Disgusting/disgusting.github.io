@@ -45,12 +45,12 @@ td{
 /* Tooltip content */
 .tooltip .tooltip-image{
     visibility: hidden;
-    width: 300px;
+    width: 320px;
     background-color: var(--primary);
     color: var(--contrast);
     text-align: center;
-    border-radius: 5px;
-    padding: 10px;
+    /* border-radius: 5px; */
+    /* padding: 10px; */
     position: absolute;
     z-index: 1;
     bottom: 125%; /* Position above the element */
