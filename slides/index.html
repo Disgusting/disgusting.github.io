@@ -19,9 +19,10 @@
 
 	<!-- Theme used for syntax highlighted code -->
 	<!-- <link rel="stylesheet" href="plugin/highlight/monokai.css"> -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai-sublime.min.css">
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai-sublime.min.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/csharp.min.js"></script>
-	
+
 </head>
 
 <body>
@@ -29,7 +30,7 @@
 		<div class="slides">
 			<section>
 				<p class="r-fit-text">
-					Visual Effects of 'Infernal Clean-up'
+					Cleaning Hell, One Vertex at a Time
 				</p>
 				<p class="fragment">
 					Technical Art, Minus the Technicalities
@@ -42,6 +43,10 @@
 				<p>
 					Demo
 				</p>
+				<video class="video" height="600
+				" width="" playsinline="" autoplay="true" loop="" controlslist="nodownload noplaybackrate"
+					disablepictureinpicture="" src="images/Vid_1.mp4"></video>
+
 			</section>
 			<section>
 				<p>
@@ -100,8 +105,89 @@
 			</code></pre>
 			</section>
 			<section>
+				<pre><code class="data-trim data-noescape csharp">
+					//   public Dictionary&lt;string, Queue&lt;GameObject&gt;&gt; poolDictionary;
+						//   ...
+						public GameObject SpawnDecalProjectorFromPool(string tag, Vector3 position, Quaternion rotation)
+						{
+							Queue&lt;GameObject&gt; poolQueue = poolDictionary[tag];
+					
+							// find inactive obj in pool
+							foreach (GameObject pooledObject in poolQueue)
+							{
+								if (!pooledObject.activeInHierarchy)
+								{
+									pooledObject.SetActive(true);
+									pooledObject.transform.position = position;
+									pooledObject.transform.rotation = rotation;
+									return pooledObject;
+								}
+							}
+							return null;
+						}
+			</code></pre>
+			</section>
+			
+			<section>
+				<pre><code class="data-trim data-noescape csharp">
+					// the KDTree was generated during Init()
+					KDQuery query = new KDQuery();
+					query.Radius(tree, originLocal, radius, results);
+			
+					float redAmountDelta = 0f;
+					float greenAmountDelta = 0f;
+					float blueAmountDelta = 0f;
+			
+					foreach (int i in results)
+					{
+						Vector3 vertex = vertices[i];
+						
+						float distanceSqr = (originLocal - vertex).sqrMagnitude;
+						if (distanceSqr &lt; radiusSqr)
+						{
+							float proximity = 1.0f - Mathf.Sqrt(distanceSqr) / radius;
+			
+							float originalRed = colors[i].r;
+							float originalGreen = colors[i].g;
+							float originalBlue = colors[i].b;
+							float redChange = channelStrength.x * proximity * Time.deltaTime;
+							float greenChange = channelStrength.y * proximity * Time.deltaTime;
+							float blueChange = channelStrength.z * proximity * Time.deltaTime;
+			
+							float newRed = Mathf.Clamp01(originalRed - redChange);
+							float newGreen = Mathf.Clamp01(originalGreen- greenChange);
+							float newBlue = Mathf.Clamp01(originalBlue- blueChange);
+							
+							redAmountDelta += originalRed - newRed;
+							greenAmountDelta += originalGreen - newGreen;
+							blueAmountDelta += originalBlue - newBlue;
+			
+							// Update vertex color array
+							colors[i].r = newRed;
+							colors[i].g = newGreen;
+							colors[i].b = newBlue;
+						}
+					}
+					...
+				</code></pre>
+			</section>
+			<section>
 				<P>Cleanable Shader-Graph</P>
 				<img src="images/Material_2.png">
+			</section>
+			<section>
+				<video class="video" height="600
+				" width="" playsinline="" autoplay="true" loop="" controlslist="nodownload noplaybackrate"
+					disablepictureinpicture="" src="images/Vid_2.mp4"></video>
+				<p>
+					Materials
+				</p>
+			</section>
+			<section>
+				<h1>Thank you!</h1>
+				<video class="video" height="600
+				" width="" playsinline="" autoplay="true" loop="" controlslist="nodownload noplaybackrate"
+					disablepictureinpicture="" src="images/BloodyCube.mp4"></video>
 			</section>
 
 			<!-- <section>Slide 2
@@ -130,8 +216,8 @@
 			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
 		});
 		document.addEventListener("DOMContentLoaded", (event) => {
-        hljs.highlightAll();
-   		 });
+			hljs.highlightAll();
+		});
 	</script>
 </body>
 
