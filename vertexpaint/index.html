@@ -4,6 +4,7 @@
 <head>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.sand.min.css">
 	<link rel="stylesheet" href="../style.css">
+	<link rel="stylesheet" href="../atom-one-dark-reasonable.css">
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="color-scheme" content="light dark">
@@ -11,6 +12,14 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
 		rel="stylesheet">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+	<!-- and it's easy to individually load additional languages -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+
+	<script>hljs.highlightAll();</script>
 	<title>Damn Standard</title>
 </head>
 
@@ -25,43 +34,89 @@
 		<p class="">
 			Technical Art Work-In-Progress of 'Infernal Cleaner'.
 		</p>
-
-		<div class="flex-container">
-			<div class="flex-item-left">
-				<video class="video" height="" width="" playsinline="" autoplay="true" loop=""
-					controlslist="nodownload noplaybackrate" disablepictureinpicture="" src="images/Vid_1.mp4"></video>
+		<div class="grid uneven-grid">
+			<div class="col-75">
+				<p>
+					In this post, we're diving into some of the technical challenges and solutions behind the scenes of
+					our game, Infernal Cleaner. Here's a look my approach to runtime vertex painting, materials and
+					additional VFX. We will be breaking down each core element.
+				</p>
+			</div>
+		</div>
+		<div class="grid uneven-grid">
+			<div class="col-75">
+				<!-- <video class="video" src="images/Vid_1.mp4"></video> -->
+				<img src="images/v1.webp">
 			</div>
 
 
-			<div class="flex-item-left">
-				<h2>
-					Runtime vertex painting
-				</h2>
+			<div class="col-25 align-bottom">
+
+				<h3>
+					1. Runtime vertex painting
+				</h3>
 				<br>
 				<p>
-					Problems with runtime vertex painting:
+					I chose to implement vertex painting as our blood painting method over render texture method due to
+					it's simplicity, but it’s notwithout its share of hurdles:
+				<h3>Problems:</h3>
 				<ul>
-					<li>No GPU instancing, mesh data different for each asset.</li>
+					<li>No GPU instancing, mesh data different for each asset. </li>
 					<li>Introduces additional 3D asset requirements.</li>
-					<li>Low FPS issue when vertex painting.</li>
+					<li>High CPU workload issue when vertex painting.</li>
 					<li>Not compatible with traditional LOD work-flow</li>
 				</ul>
 				</p>
 			</div>
 
+			<!-- <p> Unless we use Graphics.DrawMeshInstancedIndirect. </p> -->
+
+			<div class="col-75">
+				<pre><code class="csharp">
+					// Paint-vert: result = Sphere Overlap Check on a raycast. 
+					// This is within a coroutine.
+					foreach (var col in result)
+					{
+						if (!col)
+							continue;
+						col.TryGetComponent(out Cleanable cleanable);
+						if (cleanable)
+						{
+							Vector3 returnColor = Global.I.PaintVert(
+								col.GetComponent&lt;MeshRenderer&gt;(),
+								hit.point,
+								// Paint strength depending on number of objs being painted
+								paintStrengthNormal * result.Length,
+								paintRadius,
+								// 
+								cleanable.KdTree);
+						}
+						// Paint 1 mesh per frame
+						yield return null;
+					}
+				</code></pre>
+
+			</div>
+
+			<div class="col-25 align-bottom">
+				<h3>
+					Solution:
+				</h3>
+				<p>
+					I optimised the vertex painting algorithm by using coroutine to distribute task over multiple
+					frames, as well as implementing a spatial partitioning algorithm (k-d tree) to efficiently reduce
+					the size of our loop when calculating vertex painting and fall-offs.
+				</p>
+				<p>
+					k-d tree is particularly efficient when it comes to finding nearest
+					neighbour vertices. This eliminates all of our CPU-bound vertex painting performance issues.
+				</p>
+			</div>
 
 		</div>
 
 
-
-
-
-		<div class="col">
-			<video class="video" height="600
-				" width="" playsinline="" autoplay="true" loop="" controlslist="nodownload noplaybackrate"
-				disablepictureinpicture="" src="images/Vid_2.mp4"></video>
-		</div>
-
+		<video class="video" src="images/Vid_2.mp4"></video>
 
 		<div class="container">
 			<div class="col">
@@ -206,15 +261,15 @@
 			This was implemented on master shader's emission output.
 		</p>
 		<video class="video" height="600
-				" width="" playsinline="" autoplay="true" loop="" controlslist="nodownload noplaybackrate"
-			disablepictureinpicture="" src="images/Vid_3.mp4"></video>
+				" width="" playsinline="" autoplay="" loop="" controlslist="nodownload noplaybackrate" disablepictureinpicture=""
+			src="images/Vid_3.mp4"></video>
 
 
 		<div class="container">
 			<div class="col">
 				<video class="video" height="600
-				" width="" playsinline="" autoplay="true" loop="" controlslist="nodownload noplaybackrate"
-					disablepictureinpicture="" src="images/Vid_4_1.mp4"></video>
+				" width="" playsinline="" autoplay="" loop="" controlslist="nodownload noplaybackrate" disablepictureinpicture=""
+					src="images/Vid_4_1.mp4"></video>
 			</div>
 
 			<div class="col small">
@@ -244,8 +299,8 @@
 		<div class="container">
 			<div class="col">
 				<video class="video" height="600
-					" width="" playsinline="" autoplay="true" loop="" controlslist="nodownload noplaybackrate"
-					disablepictureinpicture="" src="images/Vid_2.mp4"></video>
+					" width="" playsinline="" autoplay="" loop="" controlslist="nodownload noplaybackrate" disablepictureinpicture=""
+					src="images/Vid_2.mp4"></video>
 
 			</div>
 
@@ -263,8 +318,8 @@
 
 
 			<video class="video" height="600
-				" width="" playsinline="" autoplay="true" loop="" controlslist="nodownload noplaybackrate"
-				disablepictureinpicture="" src="images/BloodyCube.mp4"></video>
+				" width="" playsinline="" autoplay="" loop="" controlslist="nodownload noplaybackrate" disablepictureinpicture=""
+				src="images/BloodyCube.mp4"></video>
 
 
 	</main>

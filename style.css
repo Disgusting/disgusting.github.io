@@ -34,6 +34,8 @@ td{
 .video {
      /* object-fit:scale-down;  */
     object-fit:scale-down;
+    width: 100%;
+    max-width: 100%;
 }
 
 
@@ -95,6 +97,13 @@ td{
      /*background-color: rgb(255, 243, 227)*/
 }
 
+.uneven-grid {
+    display: grid;
+    grid-template-columns: 75% 25%;
+    gap: 1rem; /* Optional: adjust spacing between columns */
+}
+
+
 @media (max-width: 575px) {
 
     .hidden-on-mobile {
@@ -114,6 +123,9 @@ td{
         visibility: hidden;
 
     }
+    .uneven-grid {
+        grid-template-columns: 1fr; 
+    }
 }
 
 @media (min-width: 576px) {
@@ -125,6 +137,10 @@ td{
     h1 {
         font-size: 3rem;
     }
+  
+    .uneven-grid {
+        grid-template-columns: 1fr; 
+    }
 }
 
 @media (min-width: 768px) {
@@ -135,6 +151,7 @@ td{
     }  h1 {
         font-size: 4rem;
     }
+     
 }
 
 @media (min-width: 1024px) {
@@ -156,6 +173,12 @@ td{
         --pico-font-size: 87.5%;
         /* Original: 131.25% */
     }
+    .uneven-grid {
+        display: grid;
+        grid-template-columns: 75% 25%;
+        gap: 1rem; /* Optional: adjust spacing between columns */
+    }
+    
 }
 
 .flex-container {
@@ -175,13 +198,23 @@ td{
     flex: 72%;
 }
 
-/* Responsive layout - makes a one column layout instead of a two-column layout */
-@media (max-width: 800px) {
-    .flex-item-right, .flex-item-left {
-        flex: 100%;
-    }
-}
 
 .bordered {
     border: 1px solid #000000;
+}
+
+.container {
+    max-width: 1200px; /* Adjust this to your preferred max width */
+    margin: 0 auto;    /* Centers the container */
+    padding: 1rem;     /* Adds padding to make content less cramped */
+}
+
+
+.col-75, .col-25 {
+    padding: 0;
+}
+
+.align-bottom {
+    align-self: end; /* Aligns paragraph to the bottom */
+    margin-top: auto; /* Pushes content above it, if needed */
 }
