@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en" data-theme="light" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.sand.min.css">
+	<link rel="stylesheet" href="../style.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="color-scheme" content="light dark">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+		rel="stylesheet">
+	<title>Damn Standard</title>
+</head>
+
+<body>
+	<main class="container">
+		<h4>
+			<a href="../index.html">Back</a>
+		</h4>
+		<h1 class="r-fit-text">
+			Cleaning Hell, One Vertex at a Time
+		</h1>
+		<p class="">
+			Technical Art Work-In-Progress of 'Infernal Cleaner'.
+		</p>
+
+		<div class="flex-container">
+			<div class="flex-item-left">
+				<video class="video" height="" width="" playsinline="" autoplay="true" loop=""
+					controlslist="nodownload noplaybackrate" disablepictureinpicture="" src="images/Vid_1.mp4"></video>
+			</div>
+
+
+			<div class="flex-item-left">
+				<h2>
+					Runtime vertex painting
+				</h2>
+				<br>
+				<p>
+					Problems with runtime vertex painting:
+				<ul>
+					<li>No GPU instancing, mesh data different for each asset.</li>
+					<li>Introduces additional 3D asset requirements.</li>
+					<li>Low FPS issue when vertex painting.</li>
+					<li>Not compatible with traditional LOD work-flow</li>
+				</ul>
+				</p>
+			</div>
+
+
+		</div>
+
+
+
+
+
+		<div class="col">
+			<video class="video" height="600
+				" width="" playsinline="" autoplay="true" loop="" controlslist="nodownload noplaybackrate"
+				disablepictureinpicture="" src="images/Vid_2.mp4"></video>
+		</div>
+
+
+		<div class="container">
+			<div class="col">
+				<pre><code class="data-trim data-noescape csharp">
+							// Paint-vert: result = Sphere Overlap Check on a raycast. 
+							// This is within a coroutine.
+							foreach (var col in result)
+							{
+								if (!col)
+									continue;
+								col.TryGetComponent(out Cleanable cleanable);
+								if (cleanable)
+								{
+									Vector3 returnColor = Global.I.PaintVert(
+										col.GetComponent&lt;MeshRenderer&gt;(),
+										hit.point,
+										// Paint strength depending on number of objs being painted
+										paintStrengthNormal * result.Length,
+										paintRadius,
+										// 
+										cleanable.KdTree);
+								}
+								// Paint 1 mesh per frame
+								yield return null;
+							}
+						</code></pre>
+			</div>
+
+			<div class="col small">
+				<ul>
+					<li>Splitting tasks over multiple frames with coroutines.</li>
+					<img src="images/kdtree.png">
+
+				</ul>
+			</div>
+		</div>
+
+
+
+		<ul class="small">
+			<li>Spatial partitioned the mesh using k-d tree.</li>
+
+		</ul>
+		<pre><code class="data-trim data-noescape csharp">
+					// the KDTree was generated during Init()
+					KDQuery query = new KDQuery();
+					query.Radius(tree, originLocal, radius, results);
+			
+					float redAmountDelta = 0f;
+					float greenAmountDelta = 0f;
+					float blueAmountDelta = 0f;
+			
+					foreach (int i in results)
+					{
+						Vector3 vertex = vertices[i];
+						
+						float distanceSqr = (originLocal - vertex).sqrMagnitude;
+						if (distanceSqr &lt; radiusSqr)
+						{
+							float proximity = 1.0f - Mathf.Sqrt(distanceSqr) / radius;
+			
+							float originalRed = colors[i].r;
+							float originalGreen = colors[i].g;
+							float originalBlue = colors[i].b;
+							float redChange = channelStrength.x * proximity * Time.deltaTime;
+							float greenChange = channelStrength.y * proximity * Time.deltaTime;
+							float blueChange = channelStrength.z * proximity * Time.deltaTime;
+			
+							float newRed = Mathf.Clamp01(originalRed - redChange);
+							float newGreen = Mathf.Clamp01(originalGreen- greenChange);
+							float newBlue = Mathf.Clamp01(originalBlue- blueChange);
+							
+							redAmountDelta += originalRed - newRed;
+							greenAmountDelta += originalGreen - newGreen;
+							blueAmountDelta += originalBlue - newBlue;
+			
+							// Update vertex color array
+							colors[i].r = newRed;
+							colors[i].g = newGreen;
+							colors[i].b = newBlue;
+						}
+					}
+					...
+				</code></pre>
+
+
+
+
+		<img src="images/occlusion culling.png">
+		<ul class="small">
+			<li>Occlusion culling to control draw-calls.</li>
+		</ul>
+
+
+		<p>2. Layers of blood</p>
+		<img src="images/Mat_1.png">
+
+
+
+
+		<div class="container">
+			<div class="col">
+				<img src="images/Mat_2.png">
+			</div>
+
+			<div class="col small">
+
+				<ul>
+					<li>Master Shader: Triplanar sample for blood layers.</li>
+					<li>Problem: 15 texture samples...</li>
+					<li>Problem: lightmap bake will pick up the redness from mesh</li>
+				</ul>
+			</div>
+		</div>
+
+
+
+		<p>
+			Master Material
+		</p>
+		<p>
+			<img src="images/Material_1.png">
+		</p>
+
+
+
+		<div class="container small">
+			<div class="col">
+				Problem: Lightmap picking up colour information from paintable layer.
+			</div>
+
+			<div class="col fragment">
+				Solution: "Bake-Mode" in shader (static switch on paintable layers)
+				<img src="images/BakeMode.png">
+			</div>
+		</div>
+
+
+
+		<p>3. Visual effects</p>
+		<p class="small">
+			This was implemented on master shader's emission output.
+		</p>
+		<video class="video" height="600
+				" width="" playsinline="" autoplay="true" loop="" controlslist="nodownload noplaybackrate"
+			disablepictureinpicture="" src="images/Vid_3.mp4"></video>
+
+
+		<div class="container">
+			<div class="col">
+				<video class="video" height="600
+				" width="" playsinline="" autoplay="true" loop="" controlslist="nodownload noplaybackrate"
+					disablepictureinpicture="" src="images/Vid_4_1.mp4"></video>
+			</div>
+
+			<div class="col small">
+				<p>
+					VFX: Puddle
+				</p>
+				<ul>
+					<li>Object-Pooled Decal Projector</li>
+					<li>SetFloat() on raycast to increase puddle size (erosion map lerp)</li>
+				</ul>
+			</div>
+		</div>
+
+
+
+		<p class="small">
+			Puddle Decal Shader
+			<br>
+			We're modifying only Normal,Metal*,Smoothness.
+			<img src="images/PuddleShader.png">
+		</p>
+
+
+
+
+
+		<div class="container">
+			<div class="col">
+				<video class="video" height="600
+					" width="" playsinline="" autoplay="true" loop="" controlslist="nodownload noplaybackrate"
+					disablepictureinpicture="" src="images/Vid_2.mp4"></video>
+
+			</div>
+
+
+			<p>
+				VFX: Droplets
+				<img src="images/Rivulet_1.png">
+			</p>
+			<p>
+			<ul>
+				<li>Spawn on raycast from Object-Pool</li>
+			</ul>
+			</p>
+
+
+
+			<video class="video" height="600
+				" width="" playsinline="" autoplay="true" loop="" controlslist="nodownload noplaybackrate"
+				disablepictureinpicture="" src="images/BloodyCube.mp4"></video>
+
+
+	</main>
+</body>
+
+</html>
