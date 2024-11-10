@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en" data-theme="light" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.sand.min.css">
+    <link rel="stylesheet" href="../style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+        rel="stylesheet">
+    <title>Damn Standard</title>
+</head>
+
+<body>
+    <main class="container">
+        <h4>
+            <a href="../index.html">Back</a>
+        </h4>
+
+        <h1>Bento Blocks Dev-Log: User-Centered UI design</h1>
+
+        <p>
+            May 2024:
+            <br>
+            <img src="images/bento_screenshot_1.png" width="100%">
+        </p>
+        <div class="uneven-grid">
+
+            <div class="col-75">
+                <h3>Prototype</h3>
+                <p>During the early prototyping of Bento Blocks, we conducted user testing with friends to gather
+                    preliminary feedback. This helped shape our UI and UX, balancing usability and thematic (Cozy)
+                    consistency.
+                    Below is a summary of the feedback we received, along with our design responses to enhance gameplay
+                    and interface clarity.</p>
+                <p>
+            </div>
+
+            <div class="col-25">
+
+                <h3> Summary of Player Feedback</h3>
+                <p>
+                <ul>
+                    <li>Enable cutting while holding the knife for continuous interactions.</li>
+                    <li>Clarify objectives and the star reward system.</li>
+                    <li>Enhance cutting interactions for a more satisfying.</li>
+                    <li>Players appreciated that the game could be completed with any number of cuts.</li>
+                    <li>Some players found the interface difficult to navigate. They did not know how to use the knife.
+                    </li>
+                    <li>Add a grid overlay to help players visualize the game space.</li>
+                    <li>Improve clarity around the knife’s functionality. Some players were a little lost</li>
+                </ul>
+                </p>
+            </div>
+        </div>
+        <h3>Design Response: Reactive-Cursor</h3>
+        <div class="uneven-grid">
+            <div class="col-75">
+
+                <img src="images/bento_ui_1.webp" width="100%">
+
+            </div>
+            <div class="col-25">
+
+                <p>
+                    To enhance player interaction clarity and subtly teach players about their actions in a diegetic
+                    context, a reactive cursor system was implemented. We made the cursor dynamically adjusts the sprite
+                    based on the item held and the object beneath it, hoping to providing players with immediate
+                    visual feedback and intuitive guidance without explicit instructions.</p>
+                <p>
+                    Drawing on Don Norman’s principles of <em>feedback</em> and <em>affordances</em> from <em>The Design
+                        of Everyday Things</em> This design feature aims to create effective feedback that reinforces
+                    game-mechanics understanding <a href="#ref1" id="cite1">[1]</a>.
+                </p>
+            </div>
+        </div>
+
+        <h3>Design Response: Dynamic Tutorial</h3>
+        <div class="uneven-grid">
+            <div class="col-75">
+
+                <img src="images/bento_ui_2.webp" width="100%">
+            </div>
+            <div class="col-25">
+                <p>Another design response we developed to teach players the controls is a simple diegetic tutorial that
+                    responds to player input. While still in an early stage, this tutorial effectively guides players
+                    through interactive feedback. Future iterations will incorporate animations to better communicate
+                    player actions and their consequences, enhancing clarity and engagement.</p>
+            </div>
+        </div>
+
+        <h2>References</h2>
+
+        <table>
+            <tr>
+                <td style="width: 1ch">
+                    <a href="#cite1" id="ref1">↑</a>
+                </td>
+                <td style="width: 1ch">
+                    [1]
+                </td>
+                <td style="width: auto">
+                    Norman, D. A. (1988). <i>The Design of Everyday Things.</i> New York: Doubleday.
+                </td>
+            </tr>
+        </table>
+
+    </main>
+</body>
+
+</html>
