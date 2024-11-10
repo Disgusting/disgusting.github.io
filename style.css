@@ -138,6 +138,9 @@ td{
     .uneven-grid {
         grid-template-columns: 1fr; 
     }
+    .uneven-grid-r {
+        grid-template-columns: 1fr; 
+    }
 }
 
 @media (min-width: 576px) {
@@ -151,6 +154,9 @@ td{
     }
   
     .uneven-grid {
+        grid-template-columns: 1fr; 
+    }
+    .uneven-grid-r {
         grid-template-columns: 1fr; 
     }
 }
@@ -188,6 +194,11 @@ td{
     .uneven-grid {
         display: grid;
         grid-template-columns: 62% 38%;
+        gap: 1rem; /* Optional: adjust spacing between columns */
+    }
+    .uneven-grid-r {
+        display: grid;
+        grid-template-columns: 38% 62%;
         gap: 1rem; /* Optional: adjust spacing between columns */
     }
     
@@ -228,5 +239,10 @@ td{
 
 .align-bottom {
     align-self: end; /* Aligns paragraph to the bottom */
+    margin-top: auto; /* Pushes content above it, if needed */
+}
+
+.align-top {
+    align-self:first baseline; /* Aligns paragraph to the bottom */
     margin-top: auto; /* Pushes content above it, if needed */
 }

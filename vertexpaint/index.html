@@ -46,32 +46,9 @@
 		<div class="grid uneven-grid">
 			<div class="col-75">
 				<!-- <video class="video" src="images/Vid_1.mp4"></video> -->
-				<img src="images/v1.webp">
-			</div>
-
-
-			<div class="col-25 align-bottom">
-
-				<h3>
-					1. Runtime vertex painting
-				</h3>
-				<br>
 				<p>
-					I chose to implement vertex painting as our blood painting method over render texture method due to
-					it's simplicity, but it’s notwithout its share of hurdles:
-				<h3>Problems:</h3>
-				<ul>
-					<li>No GPU instancing, mesh data different for each asset. </li>
-					<li>Introduces additional 3D asset requirements.</li>
-					<li>High CPU workload issue when vertex painting.</li>
-					<li>Not compatible with traditional LOD work-flow</li>
-				</ul>
+					<img src="images/v1.webp" width="100%">
 				</p>
-			</div>
-
-			<!-- <p> Unless we use Graphics.DrawMeshInstancedIndirect. </p> -->
-
-			<div class="col-75">
 				<pre><code class="csharp">
 					// Paint-vert: result = Sphere Overlap Check on a raycast. 
 					// This is within a coroutine.
@@ -95,71 +72,48 @@
 						yield return null;
 					}
 				</code></pre>
-
 			</div>
-
 			<div class="col-25 align-bottom">
+				<h2>
+					1. Runtime vertex painting
+				</h2>
+				<br>
+				<p>
+					I chose to implement vertex painting as our blood painting method over render texture method due to
+					it's simplicity, but it’s notwithout its share of hurdles:
+				<h3>Problem:</h3>
+				<ul>
+					<li>No GPU instancing, mesh data different for each asset. </li>
+					<li>Introduces additional 3D asset requirements.</li>
+					<li>High CPU workload issue when vertex painting.</li>
+					<li>Not compatible with traditional LOD work-flow</li>
+				</ul>
+				</p>
+
 				<h3>
 					Solution:
 				</h3>
-				<p>
-					I optimised the vertex painting algorithm by using coroutine to distribute task over multiple
-					frames, as well as implementing a spatial partitioning algorithm (k-d tree) to efficiently reduce
-					the size of our loop when calculating vertex painting and fall-offs.
-				</p>
-				<p>
-					k-d tree is particularly efficient when it comes to finding nearest
-					neighbour vertices. This eliminates all of our CPU-bound vertex painting performance issues.
-				</p>
-			</div>
-
-		</div>
-
-		<video class="video" src="images/Vid_2.mp4"></video>
-
-		<div class="container">
-			<div class="col">
-				<pre><code class="data-trim data-noescape csharp">
-							// Paint-vert: result = Sphere Overlap Check on a raycast. 
-							// This is within a coroutine.
-							foreach (var col in result)
-							{
-								if (!col)
-									continue;
-								col.TryGetComponent(out Cleanable cleanable);
-								if (cleanable)
-								{
-									Vector3 returnColor = Global.I.PaintVert(
-										col.GetComponent&lt;MeshRenderer&gt;(),
-										hit.point,
-										// Paint strength depending on number of objs being painted
-										paintStrengthNormal * result.Length,
-										paintRadius,
-										// 
-										cleanable.KdTree);
-								}
-								// Paint 1 mesh per frame
-								yield return null;
-							}
-						</code></pre>
-			</div>
-<!-- 0274273727 -->
-			<div class="col small">
 				<ul>
-					<li>Splitting tasks over multiple frames with coroutines.</li>
-					<img src="images/kdtree.png">
-
+					<li>
+						I optimised the vertex painting algorithm by using coroutine to distribute task over multiple
+						frames, as well as implementing a spatial partitioning algorithm (k-d tree) to efficiently
+						reduce
+						the size of our loop when calculating vertex painting and fall-offs.
+					</li>
+					<li>
+						k-d tree is particularly efficient when it comes to finding nearest
+						neighbour vertices. This eliminates all of our CPU-bound vertex painting performance issues.
+					</li>
+					<li>
+						Splitting tasks over multiple frames with coroutines.
+					</li>
 				</ul>
 			</div>
-		</div>
 
+			<!-- <p> Unless we use Graphics.DrawMeshInstancedIndirect. </p> -->
 
-
-		<ul class="small">
-			<li>Spatial partitioned the mesh using k-d tree.</li>
-
-		</ul>
-		<pre><code class="data-trim data-noescape csharp">
+			<div class="col-75">
+				<pre><code class="data-trim data-noescape csharp">
 					// the KDTree was generated during Init()
 					KDQuery query = new KDQuery();
 					query.Radius(tree, originLocal, radius, results);
@@ -183,7 +137,7 @@
 							float redChange = channelStrength.x * proximity * Time.deltaTime;
 							float greenChange = channelStrength.y * proximity * Time.deltaTime;
 							float blueChange = channelStrength.z * proximity * Time.deltaTime;
-			
+							
 							float newRed = Mathf.Clamp01(originalRed - redChange);
 							float newGreen = Mathf.Clamp01(originalGreen- greenChange);
 							float newBlue = Mathf.Clamp01(originalBlue- blueChange);
@@ -200,106 +154,161 @@
 					}
 					...
 				</code></pre>
-
-		<img src="images/occlusion culling.png">
-		<ul class="small">
-			<li>Occlusion culling to control draw-calls.</li>
-		</ul>
-
-		<p>2. Layers of blood</p>
-		<img src="images/Mat_1.png">
-
-		<div class="container">
-			<div class="col">
-				<img src="images/Mat_2.png">
 			</div>
 
-			<div class="col small">
+			<div class="col-25 align-top">
 
+			</div>
+
+		</div>
+
+
+		<!-- <video class="video" src="images/Vid_2.mp4"></video> -->
+		<br><br><br>
+
+		<div class="grid uneven-grid-r">
+			<div class="col-75">
+
+				<h2>
+					2. Master Material
+				</h2>
+				<br>
+				<h3>Problem:</h3>
+				<P>
 				<ul>
-					<li>Master Shader: Triplanar sample for blood layers.</li>
-					<li>Problem: 15 texture samples...</li>
-					<li>Problem: lightmap bake will pick up the redness from mesh</li>
+					<li>Blood layer needed to be consistent across multiple mesh with different texel density.</li>
+					<li>15 texture samples...madness</li>
+					<li>lightmap bake will pick up the redness from mesh</li>
 				</ul>
-			</div>
-		</div>
-
-		<p>
-			Master Material
-		</p>
-		<p>
-			<img src="images/Material_1.png">
-		</p>
-
-		<div class="container small">
-			<div class="col">
-				Problem: Lightmap picking up colour information from paintable layer.
-			</div>
-
-			<div class="col fragment">
-				Solution: "Bake-Mode" in shader (static switch on paintable layers)
-				<img src="images/BakeMode.png">
-			</div>
-		</div>
-
-		<p>3. Visual effects</p>
-		<p class="small">
-			This was implemented on master shader's emission output.
-		</p>
-		<video class="video" height="600
-				" width="" playsinline="" autoplay="" loop="" controlslist="nodownload noplaybackrate" disablepictureinpicture=""
-			src="images/Vid_3.mp4"></video>
-
-		<div class="container">
-			<div class="col">
-				<video class="video" height="600
-				" width="" playsinline="" autoplay="" loop="" controlslist="nodownload noplaybackrate" disablepictureinpicture=""
-					src="images/Vid_4_1.mp4"></video>
-			</div>
-
-			<div class="col small">
+				</P>
 				<p>
-					VFX: Puddle
+					The master material is pretty simple, it lerps 3 layers of paint on red, green and blue channels.
+					Those channel are then use as masks for the tri-planar projection of different materials of blood
+					(this uses quite a lot of texture samples). I would like to optimise thise if time allows.
 				</p>
+				<h3>Solution:</h3>
+				<ul>
+					<li>
+						"Bake-Mode" in shader (static switch on paintable layers) that bypasses blood layer blending.
+					</li>
+					<li>
+						Triplanar texture sample for blood layers to create consistency across different mesh.
+					</li>
+				</ul>
+
+			</div>
+			<div class="col-25">
+				<p>
+					<img src="images/v2.webp" width="100%">
+				</p>
+				<p>
+					<img src="images/Material_1.png" width="100%">
+				</p>
+			</div>
+		</div>
+		<p>
+
+
+		<div class="grid uneven-grid-r">
+			<div class="col-75">
+				<p>Layers of blood (RGB-Channel)</p>
+				<img src="images/Mat_2.png" width="100%">
+			</div>
+			<div class="col-25">
+				<p>Paintable blood with roughness variations.</p>
+				<img src="images/Mat_1.png" width="100%">
+			</div>
+		</div>
+		<p>
+		</p>
+		<br><br><br>
+
+		<div class="grid uneven-grid-r">
+
+
+			<div class="col-75">
+
+				<img src="images/v3.webp" width="100%">
+				<p>
+					<br>
+					This effect was implemented on master shader's emission output. When the player activates the
+					ability, we iterate through all the material variants used and simply call SetFloat().
+				</p>
+			</div>
+			<div class="col-25">
+				<h2>3. Visual effects</h2>
+				<br>
+				<p>
+					Various VFX were implemented to enhance our vertex-painting effect and mechanics.
+				<ul>
+					<li>
+						An ability to highlight dirty surfaces.
+					</li>
+					<li>
+						Wetness puddle VFX with slow decay. It spawns where water stream collides with, will expand this
+						further to create wall and ceiling variants.
+					</li>
+					<li>
+						Rivulet and droplet VFX which are spawned on contact point when we clean surfaces.
+					</li>
+				</ul>
+				</p>
+			</div>
+		</div>
+
+		<div class="grid uneven-grid-">
+			<div class="col-25">
+				<img src="images/v4.webp" width="100%">
+			</div>
+			<div class="col-75">
+				<h3>
+					VFX: Puddle
+				</h3>
+				<p>
 				<ul>
 					<li>Object-Pooled Decal Projector</li>
 					<li>SetFloat() on raycast to increase puddle size (erosion map lerp)</li>
 				</ul>
+				</p>
 			</div>
 		</div>
-
-		<p class="small">
-			Puddle Decal Shader
-			<br>
-			We're modifying only Normal,Metal*,Smoothness.
-			<img src="images/PuddleShader.png">
-		</p>
-
-		<div class="container">
-			<div class="col">
-				<video class="video" height="600
-					" width="" playsinline="" autoplay="" loop="" controlslist="nodownload noplaybackrate" disablepictureinpicture=""
-					src="images/Vid_2.mp4"></video>
-
+		<br>
+		<div class="grid uneven-grid-">
+			<div class="col-25">
+				<img src="images/PuddleShader.png" width="100%">
 			</div>
-
-
-			<p>
-				VFX: Droplets
-				<img src="images/Rivulet_1.png">
-			</p>
-			<p>
-			<ul>
-				<li>Spawn on raycast from Object-Pool</li>
-			</ul>
-			</p>
-
-
-
-			<video class="video" height="600
-				" width="" playsinline="" autoplay="" loop="" controlslist="nodownload noplaybackrate" disablepictureinpicture=""
-				src="images/BloodyCube.mp4"></video>
-
+			<div class="col-75">
+				<h3>
+					Puddle Decal Shader
+				</h3>
+				<p>
+				<ul>
+					<li>We're modifying only Normal, Metallic, and Smoothness.</li>
+					<li>SetFloat() on raycast to increase puddle size (erosion map lerp)</li>
+				</ul>
+				</p>
+			</div>
+		</div>
+		<br>
+		<div class="grid uneven-grid-">
+			<div class="col-25">
+				<img src="images/Rivulet_1.png" width="100%">
+			</div>
+			<div class="col-75">
+				<h3>
+					VFX: Droplets
+				</h3>
+				<p>
+				<ul>
+					<li>Spawn on raycast hit location, using particle system from an Object-Pool</li>
+				</ul>
+				</p>
+			</div>
+		</div>
+		<br>
+		<p>
+			Thanks for reading! This document is a Work-In-Progress, I'll add more details soon!
+		</p>
 
 	</main>
 </body>
