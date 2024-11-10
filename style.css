@@ -104,9 +104,16 @@ td{
 
 .uneven-grid {
     display: grid;
-    grid-template-columns: 75% 25%;
+    grid-template-columns: 62% 38%;
     gap: 1rem; /* Optional: adjust spacing between columns */
 }
+.uneven-grid-r {
+    display: grid;
+    grid-template-columns: 38% 62%;
+    gap: 1rem; /* Optional: adjust spacing between columns */
+}
+
+
 
 
 @media (max-width: 575px) {
@@ -180,7 +187,7 @@ td{
     }
     .uneven-grid {
         display: grid;
-        grid-template-columns: 75% 25%;
+        grid-template-columns: 62% 38%;
         gap: 1rem; /* Optional: adjust spacing between columns */
     }
     
