@@ -227,7 +227,8 @@ td{
 }
 
 .container {
-    max-width: 1200px; /* Adjust this to your preferred max width */
+    max-width: 
+    .; /* Adjust this to your preferred max width */
     margin: 0 auto;    /* Centers the container */
     padding: 1rem;     /* Adds padding to make content less cramped */
 }
