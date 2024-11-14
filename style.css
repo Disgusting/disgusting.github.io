@@ -1,0 +1,249 @@
+body {
+    
+    /* color: rgb(2, 11, 54); */
+    color:#222;
+   
+}
+a {
+    font-weight: 800;
+    /* color: rgb(1, 7, 29); */
+    color:#222;
+}
+p {
+    color:#555;
+}
+h1 {
+    font-weight: 800;
+    text-decoration: underline;
+    /*font-size: 1em;*/
+    /*color: rgb(16, 53, 206)*/
+        
+}
+h2 {
+    font-weight: 700;
+    font-size: 190%;
+}
+td{
+    font-size: 90%;
+}
+.hidden-on-mobile {
+    visibility: inherit;
+    clear: inherit;
+}
+.hidden-on-pc {
+    visibility: hidden;
+    clear: both;
+    display: none;
+}
+
+.video {
+     /* object-fit:scale-down;  */
+    object-fit:scale-down;
+    width: 100%;
+    max-width: 100%;
+}
+
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* Tooltip content */
+.tooltip .tooltip-image{
+    visibility: hidden;
+    width: 320px;
+    background-color: var(--primary);
+    color: var(--contrast);
+    text-align: center;
+    /* border-radius: 5px; */
+    /* padding: 10px; */
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* Position above the element */
+    left: 50%;
+    margin-left: -100px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none; /* Disable interaction with the tooltip content */
+}
+
+/* Tooltip arrow */
+.tooltip .tooltip-image::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent transparent transparent;
+}
+
+/* Show the tooltip content on hover */
+.tooltip:hover .tooltip-image {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Style for the image inside the tooltip */
+.tooltip img {
+    width: 800px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+
+:root {
+    --pico-typography-spacing-vertical: 1.5rem;
+    --pico-font-family: JetBrains Mono, monospace;
+    --pico-font-weight: 500;
+     /*background-color: rgb(255, 243, 227)*/
+}
+
+.uneven-grid {
+    display: grid;
+    grid-template-columns: 62% 38%;
+    gap: 1rem; /* Optional: adjust spacing between columns */
+}
+.uneven-grid-r {
+    display: grid;
+    grid-template-columns: 38% 62%;
+    gap: 1rem; /* Optional: adjust spacing between columns */
+}
+
+
+
+
+@media (max-width: 575px) {
+
+    .hidden-on-mobile {
+        visibility: hidden;
+        clear: both;
+        display: none;
+    } 
+    h1 {
+        font-size: 2rem;
+    }
+    .hidden-on-pc {
+        visibility: visible;
+        clear: inherit;
+        display: block;
+    }
+    .tooltip:hover .tooltip-image {
+        visibility: hidden;
+
+    }
+    .uneven-grid {
+        grid-template-columns: 1fr; 
+    }
+    .uneven-grid-r {
+        grid-template-columns: 1fr; 
+    }
+}
+
+@media (min-width: 576px) {
+    :root {
+        --pico-font-size: 87.5%;
+        /* Original: 106.25% */
+    }
+    
+    h1 {
+        font-size: 3rem;
+    }
+  
+    .uneven-grid {
+        grid-template-columns: 1fr; 
+    }
+    .uneven-grid-r {
+        grid-template-columns: 1fr; 
+    }
+}
+
+@media (min-width: 768px) {
+    :root {
+        --pico-font-size: 87.5%;
+        /* Original: 112.5% */
+
+    }  h1 {
+        font-size: 4rem;
+    }
+     
+}
+
+@media (min-width: 1024px) {
+    :root {
+        --pico-font-size: 87.5%;
+        /* Original: 118.75% */
+    }
+}
+
+@media (min-width: 1280px) {
+    :root {
+        --pico-font-size: 87.5%;
+        /* Original: 125% */
+    }
+}
+
+@media (min-width: 1536px) {
+    :root {
+        --pico-font-size: 87.5%;
+        /* Original: 131.25% */
+    }
+    .uneven-grid {
+        display: grid;
+        grid-template-columns: 62% 38%;
+        gap: 1rem; /* Optional: adjust spacing between columns */
+    }
+    .uneven-grid-r {
+        display: grid;
+        grid-template-columns: 38% 62%;
+        gap: 1rem; /* Optional: adjust spacing between columns */
+    }
+    
+}
+
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.flex-item-left {
+    padding-right: 8px;
+    padding-bottom: 14px;
+    flex: 28%;
+}
+
+.flex-item-right {
+    padding-left: 8px;
+    padding-bottom: 8px;
+    flex: 72%;
+}
+
+
+.bordered {
+    border: 1px solid #000000;
+}
+
+.container {
+    max-width: 
+    .; /* Adjust this to your preferred max width */
+    margin: 0 auto;    /* Centers the container */
+    padding: 1rem;     /* Adds padding to make content less cramped */
+}
+
+
+.col-75, .col-25 {
+    padding: 0;
+}
+
+.align-bottom {
+    align-self: end; /* Aligns paragraph to the bottom */
+    margin-top: auto; /* Pushes content above it, if needed */
+}
+
+.align-top {
+    align-self:first baseline; /* Aligns paragraph to the bottom */
+    margin-top: auto; /* Pushes content above it, if needed */
+}
