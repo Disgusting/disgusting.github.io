@@ -247,3 +247,13 @@ td{
     align-self:first baseline; /* Aligns paragraph to the bottom */
     margin-top: auto; /* Pushes content above it, if needed */
 }
+
+.box {
+    border-style:solid;
+    border: 1 1 1 1;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-color: #eee;
+}
