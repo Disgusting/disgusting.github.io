@@ -13,7 +13,7 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=blender" />
 
-    <title>Damnstandard :: Andy B's Games, Art, Code</title>
+    <title>damnstandard.com - Andy B's Games, Art, Code</title>
 
     <style>
         html,
@@ -110,6 +110,16 @@
             overflow: hidden;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            transform-origin: centre centre;
+
+        }
+
+        .games-grid li:hover {
+            /* transform: scale(1.03); */
+            box-shadow: 0px 0px 12px rgba(248, 247, 247, 0.3);
+            /* border-color: rgb(66, 216, 141); */
+            /* cursor: pointer; */
         }
 
         .video-link {
@@ -187,9 +197,20 @@
         .marquee-container {
             overflow: hidden;
             width: 100%;
-            background-color: #cacaca;
+            background-color: #0b0c0c;
+            border-radius: 0.4em;
             /* border-top: 1px solid #ccc; */
             /* border-bottom: 2px solid #303030; */
+        }
+
+        .marquee-text {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #e6e6e6;
+            white-space: nowrap;
+            padding: 0.5rem 0;
+            text-transform: uppercase;
+            letter-spacing: 38%;
         }
 
         .marquee-inner {
@@ -201,16 +222,8 @@
 
         .marquee-track {
             display: flex;
-            gap: 4rem;
+            gap: 1rem;
             /* spacing between loops */
-        }
-
-        .marquee-text {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: #000;
-            white-space: nowrap;
-            padding: 1rem 0;
         }
 
         @keyframes scroll-left {
@@ -230,11 +243,48 @@
         .m10 {
             margin-right: 25ch;
         }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 0.63rem 1rem;
+            background-color: rgba(28, 31, 31, 0.85);
+            color: rgb(191, 192, 199);
+            transform: translateY(-100%);
+            /* hide off-canvas initially */
+            transition: transform 0.3s ease;
+            z-index: 100;
+            /* sit above other content */
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 2) When the 'visible' class is added, slide it down into view */
+        header.visible {
+            transform: translateY(0);
+        }
+
+        /* Example styling for your header content */
+        header .site-title {
+            margin: 0;
+            font-size: 0.88rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.25ch;
+        }
+
+
     </style>
 </head>
 
 <body>
     <header>
+        <h1 class="site-title">
+            damnstandard.com - andy burusphat
+        </h1>
     </header>
 
     <main>
@@ -262,11 +312,11 @@
                     </span>
                 </a>
                 <div class="game-info">
-                    <h3><a href="https://store.steampowered.com/app/3311670/Bento_Blocks/">Bento Blocks</a></h3>
+                    <h3><a href="https://store.steampowered.com/app/3311670/Bento_Blocks/">Bento Blocks </a></h3>
                     <p>A cozy thinky puzzle game about preparing bento boxes.</p>
                     <p>
                         <a href="https://store.steampowered.com/app/3311670/Bento_Blocks/">
-                            Play now on Steam</a>
+                            Play now on Steam -></a>
                     </p>
                 </div>
             </li>
@@ -287,7 +337,7 @@
                 <div class="game-info">
                     <h3>Infernal Cleaner</h3>
                     <p>A relaxing first-person cleaning simulation game, except you're in hell.</p>
-                    <p><a href="#">Wishlist now on Steam</a></p>
+                    <p><a href="#">Wishlist now on Steam -></a></p>
                 </div>
             </li>
         </ul>
@@ -297,25 +347,24 @@
                 blender
             </span> -->
         </h2>
+        <hr>
         <div class="marquee-container">
             <div class="marquee-inner">
                 <div class="marquee-track">
-                    <div class="marquee-text m5">Notable Games</div>
-                    <div class="marquee-text m5">Notable Games</div>
-                    <div class="marquee-text m5">Notable Games</div>
-                    <div class="marquee-text m5">Notable Games</div>
-                    <div class="marquee-text m10">Notable Games</div>
+                    <div class="marquee-text m5">↓ Notable Games ↓</div>
+                    <div class="marquee-text m5">↓ Notable Games ↓</div>
+                    <div class="marquee-text m5">↓ Notable Games ↓</div>
+                    <div class="marquee-text m5">↓ Notable Games ↓</div>
                 </div>
                 <div class="marquee-track">
-                    <div class="marquee-text m5">Notable Games</div>
-                    <div class="marquee-text m5">Notable Games</div>
-                    <div class="marquee-text m5">Notable Games</div>
-                    <div class="marquee-text m5">Notable Games</div>
-                    <div class="marquee-text m10">Notable Games</div>
+                    <div class="marquee-text m5">↓ Notable Games ↓</div>
+                    <div class="marquee-text m5">↓ Notable Games ↓</div>
+                    <div class="marquee-text m5">↓ Notable Games ↓</div>
+                    <div class="marquee-text m5">↓ Notable Games ↓</div>
                 </div>
             </div>
         </div>
-        <hr>
+
 
         <ul class="games-grid">
 
@@ -427,6 +476,22 @@
         <a class="space" href="https://github.com/Disgusting">GitHub</a>
         <a class="space" href="https://disgustings.itch.io/">Itch.io</a>
     </footer>
+
+    <script>
+        (function () {
+            const header = document.querySelector('header');
+            let lastScrollY = window.scrollY;
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    header.classList.add('visible');
+                } else {
+                    header.classList.remove('visible');
+                }
+                lastScrollY = window.scrollY;
+            });
+        })();
+    </script>
 </body>
 
 </html>
