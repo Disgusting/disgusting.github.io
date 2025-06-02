@@ -309,6 +309,12 @@
         .clear {
             grid-column: 1 / -1;
         }
+
+        .notebook-grid {
+            /* override the minmax so each card is half as wide */
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1rem;
+        }
     </style>
 </head>
 
@@ -322,11 +328,14 @@
 
         <p>
             <a class="space accent" href="mailto:disgustings@gmail.com">disgustings@gmail.com ✉</a>
+            <a class="space accent" href="https://www.linkedin.com/in/andy-burusphat-198786333/">LinkedIn</a>
             <a class="space accent" href="https://www.artstation.com/disgusting">ArtStation</a>
             <a class="space accent" href="https://github.com/Disgusting">GitHub</a>
             <a class="space accent" href="https://disgustings.itch.io/">Itch.io</a>
+
         </p>
 
+        <!-- <h2>Games</h2> -->
         <!-- Notable Games Marquee -->
         <div class="marquee-container">
             <div class="marquee-inner">
@@ -471,7 +480,61 @@
         </ul>
 
         <h2>Notebook</h2>
-        <ul class="games-grid">
+        <ul class="games-grid notebook-grid">
+            <li>
+                <a href="#" class="video-link">
+                    <video
+                        src="https://s3.ap-southeast-2.amazonaws.com/damnstandard.com/filestorage/BentoBlocks/Bento_Banner.mp4"
+                        autoplay loop muted playsinline disablePictureInPicture></video>
+                    <span class="label">
+                        <img src="https://s3.ap-southeast-2.amazonaws.com/damnstandard.com/filestorage/BentoBlocks/Logo_Small.png"
+                            height="80" alt="Bento Logo" />
+                        <img class="right-align"
+                            src="https://s3.ap-southeast-2.amazonaws.com/damnstandard.com/filestorage/BentoBlocks/Steam_Icon_White.png"
+                            height="40" alt="Steam Icon" />
+                    </span>
+                </a>
+                <div class="game-info">
+                    <h3>Another Game</h3>
+                    <p>Coming soon description.</p>
+                </div>
+            </li>
+            <li>
+                <a href="#" class="video-link">
+                    <video
+                        src="https://s3.ap-southeast-2.amazonaws.com/damnstandard.com/filestorage/BentoBlocks/Bento_Banner.mp4"
+                        autoplay loop muted playsinline disablePictureInPicture></video>
+                    <span class="label">
+                        <img src="https://s3.ap-southeast-2.amazonaws.com/damnstandard.com/filestorage/BentoBlocks/Logo_Small.png"
+                            height="80" alt="Bento Logo" />
+                        <img class="right-align"
+                            src="https://s3.ap-southeast-2.amazonaws.com/damnstandard.com/filestorage/BentoBlocks/Steam_Icon_White.png"
+                            height="40" alt="Steam Icon" />
+                    </span>
+                </a>
+                <div class="game-info">
+                    <h3>Another Game</h3>
+                    <p>Coming soon description.</p>
+                </div>
+            </li>
+            <li>
+                <a href="#" class="video-link">
+                    <video
+                        src="https://s3.ap-southeast-2.amazonaws.com/damnstandard.com/filestorage/BentoBlocks/Bento_Banner.mp4"
+                        autoplay loop muted playsinline disablePictureInPicture></video>
+                    <span class="label">
+                        <img src="https://s3.ap-southeast-2.amazonaws.com/damnstandard.com/filestorage/BentoBlocks/Logo_Small.png"
+                            height="80" alt="Bento Logo" />
+                        <img class="right-align"
+                            src="https://s3.ap-southeast-2.amazonaws.com/damnstandard.com/filestorage/BentoBlocks/Steam_Icon_White.png"
+                            height="40" alt="Steam Icon" />
+                    </span>
+                </a>
+                <div class="game-info">
+                    <h3>Another Game</h3>
+                    <p>Coming soon description.</p>
+                </div>
+            </li>
             <li>
                 <a href="#" class="video-link">
                     <video
@@ -522,7 +585,7 @@
             </li>
             <li>
                 <p><i>Social</i></p>
-                <p><a href="#">LinkedIn</a></p>
+                <p><a href="https://www.linkedin.com/in/andy-burusphat-198786333/">LinkedIn</a></p>
                 <p><a class="space" href="https://www.artstation.com/disgusting">ArtStation</a></p>
                 <p><a class="space" href="https://github.com/Disgusting">GitHub</a></p>
                 <p><a class="space" href="https://disgustings.itch.io/">Itch.io</a></p>
