@@ -35,8 +35,6 @@
             color: inherit;
             text-decoration: underline;
             transition: color 0.25s ease;
-
-
         }
 
         a:hover {
@@ -195,6 +193,8 @@
         }
 
         .marquee-container {
+            margin-top: 3.5ch;
+            margin-bottom: 0.6ch;
             overflow: hidden;
             width: 100%;
             background-color: #0b0c0c;
@@ -220,6 +220,13 @@
             animation: scroll-left 130s linear infinite;
         }
 
+        .marquee-inner-reverse {
+            display: flex;
+            width: max-content;
+            animation: scroll-right 130s linear infinite;
+
+        }
+
         .marquee-track {
             display: flex;
             gap: 1rem;
@@ -235,6 +242,17 @@
                 transform: translateX(-50%);
             }
         }
+
+        @keyframes scroll-right {
+            0% {
+                transform: translateX(-50%);
+            }
+
+            100% {
+                transform: translateX(0%);
+            }
+        }
+
 
         .m5 {
             margin-right: 20ch;
@@ -276,7 +294,28 @@
             letter-spacing: 0.25ch;
         }
 
+        footer {
+            padding: 1rem;
+            border-radius: 0.4em;
+            /* background-color: gray; */
+            background-color: rgb(28, 31, 31);
 
+        }
+
+        footer .games-grid li {
+            padding: 1rem;
+        }
+
+        .text-align-left {
+            text-align: left;
+        }
+
+    
+
+        .clear {
+            grid-column: 1 / -1;
+            /* spans from first to last column */
+        }
     </style>
 </head>
 
@@ -295,8 +334,24 @@
             <a class="space accent" href="https://github.com/Disgusting">GitHub</a>
             <a class="space accent" href="https://disgustings.itch.io/">Itch.io</a>
         </p>
-        <h2 class="anim">Notable Games</h2>
-        <hr>
+        <!-- <h2 class="anim">Notable Games</h2> -->
+        <div class="marquee-container">
+            <div class="marquee-inner">
+                <div class="marquee-track">
+                    <div class="marquee-text m5">↓ Notable Games ↓</div>
+                    <div class="marquee-text m5">↓ Notable Games ↓</div>
+                    <div class="marquee-text m5">↓ Notable Games ↓</div>
+                    <div class="marquee-text m5">↓ Notable Games ↓</div>
+                </div>
+                <div class="marquee-track">
+                    <div class="marquee-text m5">↓ Notable Games ↓</div>
+                    <div class="marquee-text m5">↓ Notable Games ↓</div>
+                    <div class="marquee-text m5">↓ Notable Games ↓</div>
+                    <div class="marquee-text m5">↓ Notable Games ↓</div>
+                </div>
+            </div>
+        </div>
+        <!-- <hr> -->
         <ul class="games-grid">
             <li>
                 <a href="bento/index.html" class="video-link">
@@ -342,25 +397,23 @@
             </li>
         </ul>
 
-        <h2>Game-Jams
-            <!-- <span class="material-symbols-outlined">
-                blender
-            </span> -->
-        </h2>
-        <hr>
+        <!-- <h2>Game-Jams</h2> -->
+        <!-- <hr> -->
         <div class="marquee-container">
             <div class="marquee-inner">
                 <div class="marquee-track">
-                    <div class="marquee-text m5">↓ Notable Games ↓</div>
-                    <div class="marquee-text m5">↓ Notable Games ↓</div>
-                    <div class="marquee-text m5">↓ Notable Games ↓</div>
-                    <div class="marquee-text m5">↓ Notable Games ↓</div>
+                    <div class="marquee-text m5">↓ Small Games ↓</div>
+                    <div class="marquee-text m5">↓ Small Games ↓</div>
+                    <div class="marquee-text m5">↓ Small Games ↓</div>
+                    <div class="marquee-text m5">↓ Small Games ↓</div>
+                    <div class="marquee-text m5">↓ Small Games ↓</div>
                 </div>
                 <div class="marquee-track">
-                    <div class="marquee-text m5">↓ Notable Games ↓</div>
-                    <div class="marquee-text m5">↓ Notable Games ↓</div>
-                    <div class="marquee-text m5">↓ Notable Games ↓</div>
-                    <div class="marquee-text m5">↓ Notable Games ↓</div>
+                    <div class="marquee-text m5">↓ Small Games ↓</div>
+                    <div class="marquee-text m5">↓ Small Games ↓</div>
+                    <div class="marquee-text m5">↓ Small Games ↓</div>
+                    <div class="marquee-text m5">↓ Small Games ↓</div>
+                    <div class="marquee-text m5">↓ Small Games ↓</div>
                 </div>
             </div>
         </div>
@@ -470,11 +523,29 @@
     </main>
 
     <footer>
-        Copyright © Andy Burusphat 2025.
-        <a class="space" href="disgustings@gmail.com">disgustings@gmail.com ✉</a>
-        <a class="space" href="https://www.artstation.com/disgusting">ArtStation</a>
-        <a class="space" href="https://github.com/Disgusting">GitHub</a>
-        <a class="space" href="https://disgustings.itch.io/">Itch.io</a>
+        <ul class="games-grid text-align-left">
+            <li>
+                <p>
+                    Business Inquiries &
+                    Commissions
+                </p>
+                <p>
+                    <a class="space" href="disgustings@gmail.com">disgustings@gmail.com ✉</a>
+                </p>
+            </li>
+            <li>
+                <p>Social</p>
+                <p><a href="#">LinkedIn</a></p>
+                <p><a class="space" href="https://www.artstation.com/disgusting">ArtStation</a></p>
+                <p><a class="space" href="https://github.com/Disgusting">GitHub</a></p>
+                <p><a class="space" href="https://disgustings.itch.io/">Itch.io</a></p>
+            </li>
+
+            <li class="clear">
+                ©DAMNSTANDARD LTD 2025
+            </li>
+
+        </ul>   
     </footer>
 
     <script>
