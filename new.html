@@ -3,19 +3,22 @@
 
 <head>
     <meta charset="UTF-8">
+    <title>damnstandard.com – Andy B’s Games, Art, Code</title>
     <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
         href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=blender" />
-
-    <title>damnstandard.com - Andy B's Games, Art, Code</title>
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=blender"
+        rel="stylesheet" />
 
     <style>
+        /* =========================================================================
+           Base / Reset
+           ========================================================================= */
         html,
         body {
             height: 100%;
@@ -45,7 +48,7 @@
             text-decoration: none;
             background-color: rgb(66, 66, 66);
             border-radius: 0.2em;
-            padding: 0.1em 0.5em 0.1em;
+            padding: 0.1em 0.5em;
         }
 
         header,
@@ -62,8 +65,9 @@
         }
 
         h2 {
-
             font-weight: 700;
+            margin-top: 1.4ch;
+            margin-bottom: 1.2ch;
         }
 
         main {
@@ -71,21 +75,124 @@
             padding: 1rem;
         }
 
-        .material-symbols-outlined {
-            font-variation-settings:
-                'FILL' 0,
-                'wght' 400,
-                'GRAD' 0,
-                'opsz' 24;
-            vertical-align: middle;
-            line-height: 0;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
+        hr {
+            margin-bottom: 1.25ch;
+            color: rgb(69, 69, 71);
+        }
+
+        .space {
+            margin-right: 0.33ch;
         }
 
 
+        /* =========================================================================
+           Header
+           ========================================================================= */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 0.63rem 1rem;
+            background-color: rgba(28, 31, 31, 0.85);
+            color: rgb(191, 192, 199);
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
 
+        header.visible {
+            transform: translateY(0);
+        }
+
+        header .site-title {
+            margin: 0;
+            font-size: 0.88rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.25ch;
+        }
+
+
+        /* =========================================================================
+           Marquee (Scrolling Text)
+           ========================================================================= */
+        .marquee-container {
+            margin-top: 3.5ch;
+            margin-bottom: 0.6ch;
+            overflow: hidden;
+            width: 100%;
+            background-color: #0b0c0c;
+            border-radius: 0.4em;
+        }
+
+        .marquee-text {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #e6e6e6;
+            white-space: nowrap;
+            padding: 0.5rem 0;
+            text-transform: uppercase;
+            letter-spacing: 38%;
+        }
+
+        .marquee-inner,
+        .marquee-inner-reverse {
+            display: flex;
+            width: max-content;
+            animation-duration: 130s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+
+        .marquee-inner {
+            animation-name: scroll-left;
+        }
+
+        .marquee-inner-reverse {
+            animation-name: scroll-right;
+        }
+
+        .marquee-track {
+            display: flex;
+            gap: 1rem;
+        }
+
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        @keyframes scroll-right {
+            0% {
+                transform: translateX(-50%);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        .m5 {
+            margin-right: 20ch;
+        }
+
+        .m10 {
+            margin-right: 25ch;
+        }
+
+
+        /* =========================================================================
+           Games Grid (Shared by Main & Footer)
+           ========================================================================= */
         .games-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -104,22 +211,29 @@
         .games-grid li {
             display: flex;
             flex-direction: column;
-            background-color: #000000;
+            background-color: #000;
             overflow: hidden;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             transition: transform 0.25s ease, box-shadow 0.25s ease;
-            transform-origin: centre centre;
-
+            transform-origin: center center;
         }
 
         .games-grid li:hover {
-            /* transform: scale(1.03); */
             box-shadow: 0px 0px 12px rgba(248, 247, 247, 0.3);
-            /* border-color: rgb(66, 216, 141); */
-            /* cursor: pointer; */
         }
 
+        /* Disable hover effect for any grid that has .no-hover */
+        .no-hover li:hover {
+            box-shadow: none;
+            transform: none;
+            cursor: default;
+        }
+
+
+        /* =========================================================================
+           Video Link + Labels
+           ========================================================================= */
         .video-link {
             position: relative;
             display: block;
@@ -144,11 +258,14 @@
             align-items: center;
         }
 
-
         .right-align {
             opacity: 0.8;
         }
 
+
+        /* =========================================================================
+           Game Info
+           ========================================================================= */
         .game-info {
             padding: 0.75rem 1rem;
         }
@@ -164,177 +281,53 @@
             font-size: 1rem;
         }
 
+
+        /* =========================================================================
+           Footer
+           ========================================================================= */
         footer {
-            /* font-size: small; */
-            background-color: #000;
-            /* color: #fff; */
+            background-color: rgb(28, 31, 31);
             padding: 1rem;
+            border-radius: 0.4em;
             text-align: center;
         }
 
         footer a {
-            /* color: #fff; */
-            /* margin: 0 0.5rem; */
             font-weight: 600;
-        }
-
-        h2 {
-            margin-top: 1.4ch;
-            margin-bottom: 1.2ch;
-        }
-
-        hr {
-            margin-bottom: 1.25ch;
-            color: rgb(69, 69, 71);
-        }
-
-        .space {
-            margin-right: 0.33ch;
-        }
-
-        .marquee-container {
-            margin-top: 3.5ch;
-            margin-bottom: 0.6ch;
-            overflow: hidden;
-            width: 100%;
-            background-color: #0b0c0c;
-            border-radius: 0.4em;
-            /* border-top: 1px solid #ccc; */
-            /* border-bottom: 2px solid #303030; */
-        }
-
-        .marquee-text {
-            font-size: 1rem;
-            font-weight: 600;
-            color: #e6e6e6;
-            white-space: nowrap;
-            padding: 0.5rem 0;
-            text-transform: uppercase;
-            letter-spacing: 38%;
-        }
-
-        .marquee-inner {
-            display: flex;
-            width: max-content;
-            /* animation: scroll-left 5s linear infinite; */
-            animation: scroll-left 130s linear infinite;
-        }
-
-        .marquee-inner-reverse {
-            display: flex;
-            width: max-content;
-            animation: scroll-right 130s linear infinite;
-
-        }
-
-        .marquee-track {
-            display: flex;
-            gap: 1rem;
-            /* spacing between loops */
-        }
-
-        @keyframes scroll-left {
-            0% {
-                transform: translateX(0);
-            }
-
-            100% {
-                transform: translateX(-50%);
-            }
-        }
-
-        @keyframes scroll-right {
-            0% {
-                transform: translateX(-50%);
-            }
-
-            100% {
-                transform: translateX(0%);
-            }
-        }
-
-
-        .m5 {
-            margin-right: 20ch;
-        }
-
-        .m10 {
-            margin-right: 25ch;
-        }
-
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 0.63rem 1rem;
-            background-color: rgba(28, 31, 31, 0.85);
-            color: rgb(191, 192, 199);
-            transform: translateY(-100%);
-            /* hide off-canvas initially */
-            transition: transform 0.3s ease;
-            z-index: 100;
-            /* sit above other content */
-            display: flex;
-            align-items: center;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        /* 2) When the 'visible' class is added, slide it down into view */
-        header.visible {
-            transform: translateY(0);
-        }
-
-        /* Example styling for your header content */
-        header .site-title {
-            margin: 0;
-            font-size: 0.88rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.25ch;
-        }
-
-        footer {
-            padding: 1rem;
-            border-radius: 0.4em;
-            /* background-color: gray; */
-            background-color: rgb(28, 31, 31);
-
         }
 
         footer .games-grid li {
             padding: 1rem;
+            background-color: rgb(28, 31, 31);
         }
 
         .text-align-left {
             text-align: left;
         }
 
-    
-
+        /* Make a footer list item span across all columns (e.g. copyright row) */
         .clear {
             grid-column: 1 / -1;
-            /* spans from first to last column */
         }
     </style>
 </head>
 
 <body>
     <header>
-        <h1 class="site-title">
-            damnstandard.com - andy burusphat
-        </h1>
+        <h1 class="site-title">damnstandard.com – andy burusphat</h1>
     </header>
 
     <main>
         <h1><b>Andy Burusphat</b> is a <i>Game-Maker</i> based in Auckland, New Zealand.</h1>
+
         <p>
-            <a class="space accent" href="disgustings@gmail.com">disgustings@gmail.com ✉</a>
+            <a class="space accent" href="mailto:disgustings@gmail.com">disgustings@gmail.com ✉</a>
             <a class="space accent" href="https://www.artstation.com/disgusting">ArtStation</a>
             <a class="space accent" href="https://github.com/Disgusting">GitHub</a>
             <a class="space accent" href="https://disgustings.itch.io/">Itch.io</a>
         </p>
-        <!-- <h2 class="anim">Notable Games</h2> -->
+
+        <!-- Notable Games Marquee -->
         <div class="marquee-container">
             <div class="marquee-inner">
                 <div class="marquee-track">
@@ -351,7 +344,8 @@
                 </div>
             </div>
         </div>
-        <!-- <hr> -->
+
+        <!-- Main Games Grid -->
         <ul class="games-grid">
             <li>
                 <a href="bento/index.html" class="video-link">
@@ -367,12 +361,13 @@
                     </span>
                 </a>
                 <div class="game-info">
-                    <h3><a href="https://store.steampowered.com/app/3311670/Bento_Blocks/">Bento Blocks </a></h3>
-                    <p>A cozy thinky puzzle game about preparing bento boxes.</p>
-                    <p>
+                    <h3>
                         <a href="https://store.steampowered.com/app/3311670/Bento_Blocks/">
-                            Play now on Steam -></a>
-                    </p>
+                            Bento Blocks
+                        </a>
+                    </h3>
+                    <p>A cozy thinky puzzle game about preparing bento boxes.</p>
+                    <p><a href="https://store.steampowered.com/app/3311670/Bento_Blocks/">Play now on Steam →</a></p>
                 </div>
             </li>
 
@@ -391,14 +386,13 @@
                 </a>
                 <div class="game-info">
                     <h3>Infernal Cleaner</h3>
-                    <p>A relaxing first-person cleaning simulation game, except you're in hell.</p>
-                    <p><a href="#">Wishlist now on Steam -></a></p>
+                    <p>A relaxing first-person cleaning simulation game, except you’re in hell.</p>
+                    <p><a href="#">Wishlist now on Steam →</a></p>
                 </div>
             </li>
         </ul>
 
-        <!-- <h2>Game-Jams</h2> -->
-        <!-- <hr> -->
+        <!-- Small Games Marquee -->
         <div class="marquee-container">
             <div class="marquee-inner">
                 <div class="marquee-track">
@@ -418,10 +412,8 @@
             </div>
         </div>
 
-
+        <!-- Small Games Grid (Examples for future jams) -->
         <ul class="games-grid">
-
-            <!-- Entries for future jams -->
             <li>
                 <a href="#" class="video-link">
                     <video
@@ -476,12 +468,9 @@
                     <p>Coming soon description.</p>
                 </div>
             </li>
-
         </ul>
 
-        <h2>
-            Notebook
-        </h2>
+        <h2>Notebook</h2>
         <ul class="games-grid">
             <li>
                 <a href="#" class="video-link">
@@ -523,43 +512,34 @@
     </main>
 
     <footer>
-        <ul class="games-grid text-align-left">
+        <!-- Footer’s grid uses .no-hover to disable hover effects -->
+        <ul class="games-grid no-hover text-align-left">
             <li>
+                <p><i>Business Inquiries & Commissions</i></p>
                 <p>
-                    Business Inquiries &
-                    Commissions
-                </p>
-                <p>
-                    <a class="space" href="disgustings@gmail.com">disgustings@gmail.com ✉</a>
+                    <a class="space" href="mailto:disgustings@gmail.com">disgustings@gmail.com ✉</a>
                 </p>
             </li>
             <li>
-                <p>Social</p>
+                <p><i>Social</i></p>
                 <p><a href="#">LinkedIn</a></p>
                 <p><a class="space" href="https://www.artstation.com/disgusting">ArtStation</a></p>
                 <p><a class="space" href="https://github.com/Disgusting">GitHub</a></p>
                 <p><a class="space" href="https://disgustings.itch.io/">Itch.io</a></p>
             </li>
-
-            <li class="clear">
-                ©DAMNSTANDARD LTD 2025
-            </li>
-
-        </ul>   
+            <li class="clear">© DAMNSTANDARD LTD 2025</li>
+        </ul>
     </footer>
-
     <script>
         (function () {
-            const header = document.querySelector('header');
-            let lastScrollY = window.scrollY;
+            const header = document.querySelector("header");
 
-            window.addEventListener('scroll', () => {
+            window.addEventListener("scroll", () => {
                 if (window.scrollY > 100) {
-                    header.classList.add('visible');
+                    header.classList.add("visible");
                 } else {
-                    header.classList.remove('visible');
+                    header.classList.remove("visible");
                 }
-                lastScrollY = window.scrollY;
             });
         })();
     </script>
