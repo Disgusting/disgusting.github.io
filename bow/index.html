@@ -17,102 +17,17 @@
 
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-    <!-- Main site stylesheet -->
     <link rel="stylesheet" href="../style.css">
 
     <style>
-        /* Additional page-specific styles for the breadcrumb header */
-        .header-breadcrumb {
-            position: fixed;
-            top: 0;
-            left: 0;
-            padding: 0.63rem 1rem;
-            background-color: rgba(28, 31, 31, 0.85);
-            color: #bfc0c7;
-            font-size: 0.88rem;
-            font-weight: 600;
-            z-index: 100;
-            width: 100%;
-            display: flex;
-            align-items: center;
-        }
 
-        .header-breadcrumb a {
-            text-decoration: none;
-        }
-
-        .header-breadcrumb span {
-            margin: 0 0.25rem;
-        }
-
-        img {
-            max-width: 100%;
-            /* Never overflow the parent container */
-            height: auto;
-            /* Maintain aspect ratio */
-            display: block;
-            /* Removes inline space and lets layout behave better */
-        }
-
-        body {
-            max-width: 1600px;
-            /* Choose a max width that suits your site */
-            margin: 0 auto;
-            /* Center it */
-            padding: 0 1rem;
-            /* Optional: add some padding for smaller screens */
-        }
-
-        dialog {
-            padding: 0;
-            border: none;
-            background: rgba(0, 0, 0, 0.8);
-
-            position: fixed;
-            /* Fix to viewport */
-            top: 50%;
-            /* Position at center */
-            left: 50%;
-            transform: translate(-50%, -50%);
-            cursor: pointer;
-            max-width: 90vw;
-            max-height: 90vh;
-            outline: none;
-            /* Removes the blue border / glow */
-        }
-
-        dialog img {
-            display: block;
-            max-width: 90vw;
-            /* Up to 90% of viewport width */
-            max-height: 90vh;
-            /* Up to 90% of viewport height */
-            /* max-width: 100%;
-            max-height: 100%; */
-
-        }
-
-        dialog::backdrop {
-            background: rgba(0, 0, 0, 0.5);
-        }
-
-        .thumbnail {
-            cursor: pointer;
-        }
-
-        /* 
-        .site-content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        } */
     </style>
 </head>
 
 <body>
-    <!-- Breadcrumb Header -->
     <header class="header-breadcrumb">
-        <a href="../index.html">Home</a> <span>/</span> <a href="tutorial_1.html">Art Dump (June 2025)</a>
+        <h1 class="site-title">damnstandard.com – andy burusphat</h1> <a href="../index.html">Home</a> <span>/</span>
+        Art Dump (June 2025)
     </header>
 
     <main>
@@ -132,20 +47,42 @@
 
         <h1 class="margin-top-medium">Art Dump (June 2025)</h1>
         <hr>
-        <p>Here are some artworks that I've worked on this year of varying themes and quality.</p>
-        <p>I'll try to polish and upload some of the to ArtStation.</p>
+        <p>Here are some artworks that I've worked on this year of varying theme and quality.<br> This is a game ready
+            weapon model based on a <a href="https://www.artstation.com/artwork/4NkD9q">concept</a> by Ilya Baydin.
+            I plan to finish the rest of the character and upload it to ArtStation.</p>
         <br>
         <ul class="games-grid">
             <li>
                 <img class="thumbnail"
                     src="https://s3.ap-southeast-2.amazonaws.com/damnstandard.com/img/artdump_2025/Bow_Render_1.png" />
                 <dialog id="lightbox">
-                    <img
+                    <img id="lightbox-img"
                         src="https://s3.ap-southeast-2.amazonaws.com/damnstandard.com/img/artdump_2025/Bow_Render_1.png">
                 </dialog>
             </li>
             <li>
-                <img src="https://s3.ap-southeast-2.amazonaws.com/damnstandard.com/img/artdump_2025/Bow_Render_1.png" />
+                <img class="thumbnail"
+                    src="https://s3.ap-southeast-2.amazonaws.com/damnstandard.com/img/artdump_2025/Bow_Render_2.png" />
+                <dialog id="lightbox">
+                    <img id="lightbox-img"
+                        src="https://s3.ap-southeast-2.amazonaws.com/damnstandard.com/img/artdump_2025/Bow_Render_2.png">
+                </dialog>
+            </li>
+            <li>
+                <img class="thumbnail"
+                    src="https://s3.ap-southeast-2.amazonaws.com/damnstandard.com/img/artdump_2025/Bow_Render_3.png" />
+                <dialog id="lightbox">
+                    <img id="lightbox-img"
+                        src="https://s3.ap-southeast-2.amazonaws.com/damnstandard.com/img/artdump_2025/Bow_Render_3.png">
+                </dialog>
+            </li>
+            <li>
+                <img class="thumbnail"
+                    src="https://s3.ap-southeast-2.amazonaws.com/damnstandard.com/img/artdump_2025/Bow_Render_4.png" />
+                <dialog id="lightbox">
+                    <img id="lightbox-img"
+                        src="https://s3.ap-southeast-2.amazonaws.com/damnstandard.com/img/artdump_2025/Bow_Render_4.png">
+                </dialog>
             </li>
         </ul>
 
@@ -183,17 +120,19 @@
             });
         })();
 
-        const thumbnail = document.querySelector('.thumbnail');
-        const dialog = document.querySelector('#lightbox');
+        const thumbnails = document.querySelectorAll('.thumbnail');
+        const dialog = document.getElementById('lightbox');
+        const dialogImage = document.getElementById('lightbox-img');
 
-        thumbnail.addEventListener('click', () => {
-            dialog.showModal();
+        thumbnails.forEach(img => {
+            img.addEventListener('click', () => {
+                dialogImage.src = img.src;
+                dialogImage.alt = img.alt || '';
+                dialog.showModal();
+            });
         });
 
-        thumbnail.addEventListener('click', () => {
-            dialog.showModal();
-        });
-
+        // Close when clicking the backdrop or the image
         dialog.addEventListener('click', (e) => {
             if (e.target === dialog || e.target.tagName === 'IMG') {
                 dialog.close();
