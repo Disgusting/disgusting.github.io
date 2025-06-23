@@ -121,8 +121,7 @@
            Marquee (Scrolling Text)
            ========================================================================= */
         .marquee-container {
-            margin-top: 11.5ch;
-            /* 3.5 */
+            margin-top: 11.5ch;  /* 3.5 */
             margin-bottom: 0.6ch;
             overflow: hidden;
             width: 100%;
@@ -133,7 +132,7 @@
         .marquee-text {
             font-size: 1rem;
             font-weight: 600;
-            color: #9291a5;
+            color: #e6e6e6;
             white-space: nowrap;
             padding: 0.5rem 0;
             text-transform: uppercase;
@@ -203,14 +202,9 @@
             margin: 0;
         }
 
-        @media (min-width: 1500px) {
+        @media (min-width: 1200px) {
             .games-grid {
                 grid-template-columns: repeat(3, 1fr);
-            }
-        }
-        @media (max-width: 1200px) {
-            .games-grid {
-                grid-template-columns: repeat(1, 1fr);
             }
         }
 
@@ -316,12 +310,10 @@
             grid-column: 1 / -1;
         }
 
-
         .notebook-grid {
-            grid-template-columns: repeat(auto-fit, minmax(320px, 320px));
-            /* justify-content: center; */
-            justify-content: flex-start;
-            /* Align to the left */
+            /* override the minmax so each card is half as wide */
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1rem;
         }
     </style>
 </head>
@@ -390,7 +382,8 @@
 
             <li>
                 <a href="#" class="video-link">
-                    <video src="https://s3.ap-southeast-2.amazonaws.com/damnstandard.com/img/Infernal+Trailer.mp4"
+                    <video
+                        src="https://s3.ap-southeast-2.amazonaws.com/damnstandard.com/img/Infernal+Trailer.mp4"
                         autoplay loop muted playsinline disablePictureInPicture></video>
                     <span class="label">
                         <img src="" height="80" alt="" />
@@ -402,8 +395,7 @@
                 <div class="game-info">
                     <h3><a href="https://store.steampowered.com/app/3616920/Infernal_Cleaner/">Infernal Cleaner</a></h3>
                     <p>A relaxing first-person cleaning simulation game, except you’re in hell.</p>
-                    <p><a href="https://store.steampowered.com/app/3616920/Infernal_Cleaner/">Wishlist now on Steam
-                            →</a></p>
+                    <p><a href="https://store.steampowered.com/app/3616920/Infernal_Cleaner/">Wishlist now on Steam →</a></p>
                 </div>
             </li>
         </ul>
@@ -412,18 +404,18 @@
         <div class="marquee-container">
             <div class="marquee-inner">
                 <div class="marquee-track">
-                    <div class="marquee-text m5">↓ Explorations ↓</div>
-                    <div class="marquee-text m5">↓ Explorations ↓</div>
-                    <div class="marquee-text m5">↓ Explorations ↓</div>
-                    <div class="marquee-text m5">↓ Explorations ↓</div>
-                    <div class="marquee-text m5">↓ Explorations ↓</div>
+                    <div class="marquee-text m5">↓ Small Games ↓</div>
+                    <div class="marquee-text m5">↓ Small Games ↓</div>
+                    <div class="marquee-text m5">↓ Small Games ↓</div>
+                    <div class="marquee-text m5">↓ Small Games ↓</div>
+                    <div class="marquee-text m5">↓ Small Games ↓</div>
                 </div>
                 <div class="marquee-track">
-                    <div class="marquee-text m5">↓ Explorations ↓</div>
-                    <div class="marquee-text m5">↓ Explorations ↓</div>
-                    <div class="marquee-text m5">↓ Explorations ↓</div>
-                    <div class="marquee-text m5">↓ Explorations ↓</div>
-                    <div class="marquee-text m5">↓ Explorations ↓</div>
+                    <div class="marquee-text m5">↓ Small Games ↓</div>
+                    <div class="marquee-text m5">↓ Small Games ↓</div>
+                    <div class="marquee-text m5">↓ Small Games ↓</div>
+                    <div class="marquee-text m5">↓ Small Games ↓</div>
+                    <div class="marquee-text m5">↓ Small Games ↓</div>
                 </div>
             </div>
         </div>
@@ -432,7 +424,8 @@
         <ul class="games-grid notebook-grid">
             <li>
                 <a href="#" class="video-link">
-                    <video src="https://s3.ap-southeast-2.amazonaws.com/damnstandard.com/img/FrogSurvivor+Trailer.mp4"
+                    <video
+                        src="https://s3.ap-southeast-2.amazonaws.com/damnstandard.com/img/FrogSurvivor+Trailer.mp4"
                         autoplay loop muted playsinline disablePictureInPicture></video>
                     <span class="label">
                         <!-- <img src="https://s3.ap-southeast-2.amazonaws.com/damnstandard.com/filestorage/BentoBlocks/Logo_Small.png" height="80" alt="Bento Logo" /> -->
@@ -441,8 +434,119 @@
                 </a>
                 <div class="game-info">
                     <h3>Frog Survivor</h3>
-                    <p>A fast-paced rogue-like video game. The player must survive against an unending horde of enemies,
-                        by evolving into the most powerful frog imaginable.</p>
+                    <p>A fast-paced rogue-like video game. The player must survive against an unending horde of enemies, by evolving into the most powerful frog imaginable.</p>
+                </div>
+            </li>
+            <li>
+                <a href="#" class="video-link">
+                    <video
+                        src="https://s3.ap-southeast-2.amazonaws.com/damnstandard.com/filestorage/BentoBlocks/Bento_Banner.mp4"
+                        autoplay loop muted playsinline disablePictureInPicture></video>
+                    <span class="label">
+                        <img src="https://s3.ap-southeast-2.amazonaws.com/damnstandard.com/filestorage/BentoBlocks/Logo_Small.png"
+                            height="80" alt="Bento Logo" />
+                        <img class="right-align"
+                            src="https://s3.ap-southeast-2.amazonaws.com/damnstandard.com/filestorage/BentoBlocks/Steam_Icon_White.png"
+                            height="40" alt="Steam Icon" />
+                    </span>
+                </a>
+                <div class="game-info">
+                    <h3>Another Game</h3>
+                    <p>Coming soon description.</p>
+                </div>
+            </li>
+            <li>
+                <a href="#" class="video-link">
+                    <video
+                        src="https://s3.ap-southeast-2.amazonaws.com/damnstandard.com/filestorage/BentoBlocks/Bento_Banner.mp4"
+                        autoplay loop muted playsinline disablePictureInPicture></video>
+                    <span class="label">
+                        <img src="https://s3.ap-southeast-2.amazonaws.com/damnstandard.com/filestorage/BentoBlocks/Logo_Small.png"
+                            height="80" alt="Bento Logo" />
+                        <img class="right-align"
+                            src="https://s3.ap-southeast-2.amazonaws.com/damnstandard.com/filestorage/BentoBlocks/Steam_Icon_White.png"
+                            height="40" alt="Steam Icon" />
+                    </span>
+                </a>
+                <div class="game-info">
+                    <h3>Another Game</h3>
+                    <p>Coming soon description.</p>
+                </div>
+            </li>
+        </ul>
+       
+        <!-- Articles Marquee -->
+        <div class="marquee-container">
+            <div class="marquee-inner">
+                <div class="marquee-track">
+                    <div class="marquee-text m5">↓ Articles ↓</div>
+                    <div class="marquee-text m5">↓ Articles ↓</div>
+                    <div class="marquee-text m5">↓ Articles ↓</div>
+                    <div class="marquee-text m5">↓ Articles ↓</div>
+                    <div class="marquee-text m5">↓ Articles ↓</div>
+                </div>
+                <div class="marquee-track">
+                    <div class="marquee-text m5">↓ Articles ↓</div>
+                    <div class="marquee-text m5">↓ Articles ↓</div>
+                    <div class="marquee-text m5">↓ Articles ↓</div>
+                    <div class="marquee-text m5">↓ Articles ↓</div>
+                    <div class="marquee-text m5">↓ Articles ↓</div>
+                </div>
+            </div>
+        </div>
+        <ul class="games-grid notebook-grid">
+            <li>
+                <a href="#" class="video-link">
+                    <video
+                        src="https://s3.ap-southeast-2.amazonaws.com/damnstandard.com/img/FrogSurvivor+Trailer.mp4"
+                        autoplay loop muted playsinline disablePictureInPicture></video>
+                    <span class="label">
+                        <!-- <img src="https://s3.ap-southeast-2.amazonaws.com/damnstandard.com/filestorage/BentoBlocks/Logo_Small.png"
+                            height="80" alt="Bento Logo" /> -->
+                        <!-- <img class="right-align"
+                            src="https://s3.ap-southeast-2.amazonaws.com/damnstandard.com/filestorage/BentoBlocks/Steam_Icon_White.png"
+                            height="40" alt="Steam Icon" /> -->
+                    </span>
+                </a>
+                <div class="game-info">
+                    <h3>Another Game</h3>
+                    <p>Coming soon description.</p>
+                </div>
+            </li>
+            <li>
+                <a href="#" class="video-link">
+                    <video
+                        src="https://s3.ap-southeast-2.amazonaws.com/damnstandard.com/filestorage/BentoBlocks/Bento_Banner.mp4"
+                        autoplay loop muted playsinline disablePictureInPicture></video>
+                    <span class="label">
+                        <img src="https://s3.ap-southeast-2.amazonaws.com/damnstandard.com/filestorage/BentoBlocks/Logo_Small.png"
+                            height="80" alt="Bento Logo" />
+                        <img class="right-align"
+                            src="https://s3.ap-southeast-2.amazonaws.com/damnstandard.com/filestorage/BentoBlocks/Steam_Icon_White.png"
+                            height="40" alt="Steam Icon" />
+                    </span>
+                </a>
+                <div class="game-info">
+                    <h3>Another Game</h3>
+                    <p>Coming soon description.</p>
+                </div>
+            </li>
+            <li>
+                <a href="#" class="video-link">
+                    <video
+                        src="https://s3.ap-southeast-2.amazonaws.com/damnstandard.com/filestorage/BentoBlocks/Bento_Banner.mp4"
+                        autoplay loop muted playsinline disablePictureInPicture></video>
+                    <span class="label">
+                        <img src="https://s3.ap-southeast-2.amazonaws.com/damnstandard.com/filestorage/BentoBlocks/Logo_Small.png"
+                            height="80" alt="Bento Logo" />
+                        <img class="right-align"
+                            src="https://s3.ap-southeast-2.amazonaws.com/damnstandard.com/filestorage/BentoBlocks/Steam_Icon_White.png"
+                            height="40" alt="Steam Icon" />
+                    </span>
+                </a>
+                <div class="game-info">
+                    <h3>Another Game</h3>
+                    <p>Coming soon description.</p>
                 </div>
             </li>
             <li>
@@ -483,6 +587,7 @@
             </li>
         </ul>
 
+        
     </main>
 
     <footer>
