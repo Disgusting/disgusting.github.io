@@ -179,9 +179,9 @@
         </ul>
     </footer>
     <script>
-        (function () {
+        document.addEventListener("DOMContentLoaded", () => {
+            // Header scroll visibility
             const header = document.querySelector("header");
-
             window.addEventListener("scroll", () => {
                 if (window.scrollY > 100) {
                     header.classList.add("visible");
@@ -189,25 +189,7 @@
                     header.classList.remove("visible");
                 }
             });
-        })();
-
-        const thumbnails = document.querySelectorAll('.thumbnail');
-        const dialog = document.getElementById('lightbox');
-        const dialogImage = document.getElementById('lightbox-img');
-
-        thumbnails.forEach(img => {
-            img.addEventListener('click', () => {
-                dialogImage.src = img.src;
-                dialogImage.alt = img.alt || '';
-                dialog.showModal();
-            });
-        });
-        dialog.addEventListener('click', (e) => {
-            if (e.target === dialog || e.target.tagName === 'IMG') {
-                dialog.close();
-            }
         });
     </script>
 </body>
-
 </html>
