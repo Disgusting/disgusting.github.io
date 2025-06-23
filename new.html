@@ -120,8 +120,12 @@
         /* =========================================================================
            Marquee (Scrolling Text)
            ========================================================================= */
-        .marquee-container {
+        .margin-top-large {
             margin-top: 11.5ch;
+        }
+
+        .marquee-container {
+
             /* 3.5 */
             margin-bottom: 0.6ch;
             overflow: hidden;
@@ -138,6 +142,7 @@
             padding: 0.5rem 0;
             text-transform: uppercase;
             letter-spacing: 38%;
+            user-select: none;
         }
 
         .marquee-inner,
@@ -207,9 +212,30 @@
             .games-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
+
+            .notebook-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
         }
+
         @media (max-width: 1200px) {
             .games-grid {
+                grid-template-columns: repeat(1, 1fr);
+            }
+
+            .notebook-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 720px) {
+
+            /* Styles for mobile phones */
+            .games-grid {
+                grid-template-columns: repeat(1, 1fr);
+            }
+
+            .notebook-grid {
                 grid-template-columns: repeat(1, 1fr);
             }
         }
@@ -317,12 +343,10 @@
         }
 
 
-        .notebook-grid {
+        /* .notebook-grid {
             grid-template-columns: repeat(auto-fit, minmax(320px, 320px));
-            /* justify-content: center; */
             justify-content: flex-start;
-            /* Align to the left */
-        }
+        } */
     </style>
 </head>
 
@@ -345,7 +369,7 @@
 
         <!-- <h2>Games</h2> -->
         <!-- Notable Games Marquee -->
-        <div class="marquee-container">
+        <div class="marquee-container margin-top-large">
             <div class="marquee-inner">
                 <div class="marquee-track">
                     <div class="marquee-text m5">↓ Notable Games ↓</div>
@@ -409,7 +433,7 @@
         </ul>
 
         <!-- Small Games Marquee -->
-        <div class="marquee-container">
+        <div class="marquee-container margin-top-large">
             <div class="marquee-inner">
                 <div class="marquee-track">
                     <div class="marquee-text m5">↓ Explorations ↓</div>
@@ -459,7 +483,7 @@
                     </span>
                 </a>
                 <div class="game-info">
-                    <h3>Another Game</h3>
+                    <h3><a href="bow/index.html">Art Dumpster [June 2025]</a></h3>
                     <p>Coming soon description.</p>
                 </div>
             </li>
