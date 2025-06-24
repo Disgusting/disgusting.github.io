@@ -201,7 +201,7 @@ header .site-title {
     }
 }
 
-@media (max-width: 720px) {
+@media (max-width: 781px) {
 
     /* Styles for mobile phones */
     .games-grid {
